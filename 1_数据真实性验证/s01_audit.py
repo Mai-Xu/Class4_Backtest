@@ -12,16 +12,15 @@ import os
 import sys
 
 # ---- 项目定位 ---------------------------------------------------------------
-# 数据层 lib.py 与 feathers/ 都在**项目根目录**：回测系统（engine.py /
-# strategies.py / s02_backtest.py / s03_report.py）也 import lib，
-# 因此 lib.py 保留在根目录，不随本目录搬迁；这里把根目录挂进 sys.path。
+# 数据层已归入项目根的 core/lib.py，feathers/ 也在项目根；
+# 三条轨道共用同一份数据层，所以这里把项目根挂进 sys.path。
 HERE = os.path.dirname(os.path.abspath(__file__))
 PROJ = os.path.dirname(HERE)
 if PROJ not in sys.path:
     sys.path.insert(0, PROJ)
 
-import lib as _lib
-from lib import MarketData, FIELDS, savefig, savetab
+import core.lib as _lib
+from core.lib import MarketData, FIELDS, savefig, savetab
 
 # 本目录的产物根：savefig/savetab 在**调用时**读取 lib 的模块级 FIG/TAB，
 # 所以这里改掉即可让图与表落到本目录的 out/ 下。

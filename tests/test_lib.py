@@ -12,13 +12,9 @@ import numpy as np
 import pandas as pd
 
 # 数据层 lib.py 在项目根目录（回测系统也依赖它）；向上找到含 lib.py 的目录
-_here = os.path.dirname(os.path.abspath(__file__))
-_p = _here
-while _p != os.path.dirname(_p) and not os.path.isfile(os.path.join(_p, "lib.py")):
-    _p = os.path.dirname(_p)
-sys.path.insert(0, _p)
+sys.path.insert(0, os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 
-from lib import (MarketData, FIELDS, board_new_days, round_tick,
+from core.lib import (MarketData, FIELDS, board_new_days, round_tick,
                  CUMADJ_EPS, RATIO_MAIN, RATIO_GEM)
 
 MD = None

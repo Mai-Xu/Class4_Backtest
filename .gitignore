@@ -1,0 +1,19 @@
+# --- Python ---
+__pycache__/
+*.py[cod]
+.ipynb_checkpoints/
+
+# --- 原始行情数据（226 MB，沿用 Class3 约定：仓库不含原始数据）---
+# 如果确实要把数据一起入库，删掉下面这行即可
+feathers/
+
+# --- 可再生的大体积中间产物（不要入库）---
+out/cache/
+out/runs/
+
+# --- 系统文件 ---
+.DS_Store
+Thumbs.db
+# 核验脚手架不进仓库
+3_因子挖掘/audit/_*
+1_数据真实性验证/audit/_*.pyc

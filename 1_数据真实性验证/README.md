@@ -2,14 +2,14 @@
 
 对 `../feathers/` 的 7 个日频矩阵做**真实性核查**：证明这份数据不仅「自洽」，而且「正确」。
 
-回测系统（`../engine.py` / `../strategies.py` / `../s02_backtest.py` / `../s03_report.py`）
-是另一套代码，不在本目录范围内。
+回测系统与因子挖掘（`../core/` / `../2_回测系统/` / `../3_因子挖掘/`）是另外两条轨道，
+不在本目录范围内；三条轨道共用根目录的 `../core/lib.py` 数据层。
 
 ## 三层验证
 
 | 层级 | 手段 | 入口 | 结论 |
 | --- | --- | --- | --- |
-| **结构自洽** | 29 项单元测试 | `tests/test_lib.py` | 全部通过 |
+| **结构自洽** | 29 项单元测试 | [`../tests/test_lib.py`](../tests/test_lib.py) | 全部通过 |
 | **内部一致** | 掩码对齐 / 复权去噪 / 涨跌停逐格违约 / 极端日对照真实事件 | `s01_audit.py` | 见 `out/data_audit.md` |
 | **外部真值** | 与公开行情源逐格比对 | `s02_external_check.py` | 见 `out/external_check.md` |
 
@@ -19,7 +19,7 @@
 | --- | --- |
 | `s01_audit.py` | 数据体检 → `out/data_audit.md`（9 节，正文全部为实测数字） |
 | `s02_external_check.py` | 外部真值比对 → `out/external_check.md` |
-| `tests/test_lib.py` | 29 项单元测试，把每个「坑」固化成断言 |
+| *（测试已并入顶层）* | 29 项单元测试见 [`../tests/test_lib.py`](../tests/test_lib.py)，把每个「坑」固化成断言 |
 | `out/data_audit.md` | 审计报告：数据事实、口径、验证结果、已知限制 |
 | `out/external_check.md` | 外部核对报告：逐股逐格比对明细 |
 | `out/figures/01_*.png` | 4 张图（8 个面板）：股票池规模、停牌/一字板、复权噪声、涨跌停、行情对照 |
@@ -28,14 +28,18 @@
 
 ## 运行
 
-```bash
-cd 1_数据真实性验证
+在**项目根目录**运行（脚本自带 `sys.path` 引导）：
 
-python s01_audit.py                                   # 数据体检（约 17 秒）
-python s02_external_check.py                          # 外部比对（联网，约 30 秒）
-python s02_external_check.py --sample 12 --random 18  # 扩到 30 只样本
-python -m unittest discover -s tests -p "test_lib.py" -v
+```bash
+python 1_数据真实性验证/s01_audit.py                        # 数据体检（约 17 秒）
+python 1_数据真实性验证/s02_external_check.py               # 外部比对（联网，约 30 秒）
+python 1_数据真实性验证/s02_external_check.py --sample 12 --random 18
+python -m unittest tests.test_lib -v                       # 29 项数据层测试
 ```
+
+> 本目录的产物（`out/`）**刻意与主 `out/` 分离**：脚本在调用时覆盖 `core.lib` 的
+> `FIG`/`TAB` 指向本目录，因此这部分证据可以随代码一起入库，而主 `out/` 里的大体积
+> 中间产物不进版本库。
 
 依赖 `pandas` / `numpy` / `pyarrow` / `matplotlib`（Python 3.13）。
 `s02_external_check.py` 需要联网，**回测本身不依赖网络**。
@@ -48,14 +52,15 @@ python -m unittest discover -s tests -p "test_lib.py" -v
 | 成交额（`VWAP` 必落在 `[low, high]` 的数学约束） | 腾讯行情成交量 | 44,131 个证券日 | **0 越界** |
 | 复权收益 | 腾讯前复权 | 640 日 x 30 只，89 个除权日 | 与外部一致；同样这些日子用**未复权**收益比会差到 **30.5%** |
 
-## 关于 `lib.py`
+## 关于 `core/lib.py`
 
-数据层 `lib.py` **保留在上一级目录**，没有搬进来：
+数据层已归入**项目根目录的 `core/`**，本目录不自带副本：
 
-- `engine.py` / `strategies.py` / `s02_backtest.py` / `s03_report.py` / `tests/test_engine.py`
-  都 `from lib import ...`，搬走会直接报错；
-- `lib.py` 定义了项目共用的 `ROOT / FIG / TAB` 输出约定，搬家会把回测系统的产物
-  一起挪位置。
+- `core/engine.py` / `core/strategies.py` / `2_回测系统/s02_backtest.py` … 都
+  `from core.lib import ...`；三条轨道共用同一份数据层；
+- `core/lib.py` 定义项目共用的 `ROOT / FIG / TAB`（`ROOT` = 项目根）。
+  本目录的脚本在**调用时**把 `FIG / TAB` 覆盖成自己的 `out/`，
+  因此这份核查证据与主 `out/` 的大体积产物互不干扰。
 
 本目录的脚本通过把上级目录挂进 `sys.path` 来引用它，并把 `savefig` / `savetab`
 的输出重定向到本目录的 `out/`，因此**两边互不干扰**。
