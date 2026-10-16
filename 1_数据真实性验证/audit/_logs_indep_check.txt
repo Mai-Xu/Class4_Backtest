@@ -1,0 +1,136 @@
+D:\PythonSoftware\Lib\site-packages\pandas\io\feather_format.py:124: FutureWarning: pyarrow.feather.read_feather is deprecated as of 24.0.0. Use pyarrow.ipc.open_file() / RecordBatchFileReader instead. Feather V2 is the Arrow IPC file format.
+  return feather.read_feather(
+D:\PythonSoftware\Lib\site-packages\pandas\io\feather_format.py:124: FutureWarning: pyarrow.feather.read_feather is deprecated as of 24.0.0. Use pyarrow.ipc.open_file() / RecordBatchFileReader instead. Feather V2 is the Arrow IPC file format.
+  return feather.read_feather(
+D:\PythonSoftware\Lib\site-packages\pandas\io\feather_format.py:124: FutureWarning: pyarrow.feather.read_feather is deprecated as of 24.0.0. Use pyarrow.ipc.open_file() / RecordBatchFileReader instead. Feather V2 is the Arrow IPC file format.
+  return feather.read_feather(
+D:\PythonSoftware\Lib\site-packages\pandas\io\feather_format.py:124: FutureWarning: pyarrow.feather.read_feather is deprecated as of 24.0.0. Use pyarrow.ipc.open_file() / RecordBatchFileReader instead. Feather V2 is the Arrow IPC file format.
+  return feather.read_feather(
+D:\PythonSoftware\Lib\site-packages\pandas\io\feather_format.py:124: FutureWarning: pyarrow.feather.read_feather is deprecated as of 24.0.0. Use pyarrow.ipc.open_file() / RecordBatchFileReader instead. Feather V2 is the Arrow IPC file format.
+  return feather.read_feather(
+D:\PythonSoftware\Lib\site-packages\pandas\io\feather_format.py:124: FutureWarning: pyarrow.feather.read_feather is deprecated as of 24.0.0. Use pyarrow.ipc.open_file() / RecordBatchFileReader instead. Feather V2 is the Arrow IPC file format.
+  return feather.read_feather(
+D:\PythonSoftware\Lib\site-packages\pandas\io\feather_format.py:124: FutureWarning: pyarrow.feather.read_feather is deprecated as of 24.0.0. Use pyarrow.ipc.open_file() / RecordBatchFileReader instead. Feather V2 is the Arrow IPC file format.
+  return feather.read_feather(
+====================================================================================================
+A-track independent check  |  data dir: F:\004大学学业资料\大二下-大三下\量化交易\Class4_回测\feathers
+started: 2026-10-16T23:30:47
+====================================================================================================
+
+====================================================================================================
+PART A  OHLC 排序约束（全样本逐格）
+====================================================================================================
+valid cells (o/h/l/c all finite): 7,840,790
+violations  low > min(open,close)      : 0
+violations  max(open,close) > high     : 0
+violations  any of the two             : 0
+max overshoot (low - min(o,c))         : 0
+max overshoot (max(o,c) - high)        : 0
+
+====================================================================================================
+PART B  cumadj 单调性 / 浮点噪声 vs 真实事件 / 独立去噪重建
+====================================================================================================
+valid consecutive pairs            : 7,835,337
+raw cumadj decreases (rel < 1)     : 440,317
+raw cumadj decreases (<1-1e-12)    : 440,317
+min rel (raw)                      : 0.656140350877
+decrease magnitude bands           : {'[0,1e-12)': 0, '[1e-12,1e-08)': 0, '[1e-08,1e-06)': 0, '[1e-06,0.0001)': 440307, '[0.0001,1e+09)': 10}
+bands |rel-1|                      : {'[0,1e-06)': 6928496, '[1e-06,1e-05)': 855974, '[1e-05,0.0001)': 24572, '[0.0001,0.001)': 559, '[0.001,1e+09)': 25736}
+noise cells 1e-6 <= |rel-1| < 1e-4 : 880,546  (= claimed 880,546)
+noise cells 0 < |rel-1| < 1e-4     : 880,546
+real events |rel-1| >= 1e-4        : 26,295  (= claimed 26,295; up 26,285 / down 10)
+after my own denoise: decreases(>1e-12) : 10
+after my own denoise: min rel           : 0.656140350877
+after my own denoise: 0<|rel-1|<1e-4   : 0
+after my own denoise: real events       : 26,295
+real event cells preserved by rebuild    : 26,295 / 26,295
+real (>1e-4) factor DECREASES: 10
+  2020-06-30 600145.SH factor_rel=0.656140 prev_close=1.87 close=2.71 prev_valid=2020-06-29
+  2021-03-29 002071.SZ factor_rel=0.999824 prev_close=0.27 close=0.25 prev_valid=2021-03-26
+  2021-03-31 002071.SZ factor_rel=0.999824 prev_close=0.24 close=0.25 prev_valid=2021-03-30
+  2021-04-08 002071.SZ factor_rel=0.999824 prev_close=0.24 close=0.25 prev_valid=2021-04-07
+  2022-04-26 603157.SH factor_rel=0.999867 prev_close=0.69 close=0.64 prev_valid=2022-04-25
+  2022-04-27 603996.SH factor_rel=0.999889 prev_close=0.43 close=0.39 prev_valid=2022-04-26
+  2022-05-17 000585.SZ factor_rel=0.999755 prev_close=0.36 close=0.35 prev_valid=2022-05-16
+  2022-05-24 600695.SH factor_rel=0.999899 prev_close=0.53 close=0.51 prev_valid=2022-05-23
+  2022-06-24 000613.SZ factor_rel=0.999864 prev_close=0.63 close=0.58 prev_valid=2022-06-23
+  2022-06-28 000613.SZ factor_rel=0.999846 prev_close=0.59 close=0.58 prev_valid=2022-06-27
+
+====================================================================================================
+PART C  adj_close 日收益尾部（独立实现 adj = close x 我算的去噪因子）
+====================================================================================================
+valid daily adj-returns            : 7,835,337
+quantiles 0.01% / 0.1% / 99.9% / 99.99%: -20.000000%  -13.129619%  19.992335%  20.039293%
+|ret| quantiles 99.9% / 99.99% / 99.999% : 20.000000%  20.059201%  59.968881%
+max |ret| = 488.4444%   max ret = 488.4444%   min ret = -96.4431%
+count |ret|>11%: 45,674 ; >21%: 301 ; >50%: 104 ; >100%: 7
+Top 5 |adj daily return|:
+  2022-08-22 000670.SZ ret_adj=+488.4444% ret_raw=+488.4444% factor_rel=1.000000 days_since_first=639 prior=10% beyond=True one_line=False known_day=False px 2.25->13.24
+  2020-12-16 000995.SZ ret_adj=+314.9933% ret_raw=+314.9933% factor_rel=1.000000 days_since_first=231 prior=10% beyond=True one_line=False known_day=False px 7.47->31.00
+  2021-08-10 000792.SZ ret_adj=+306.1086% ret_raw=+306.1086% factor_rel=1.000000 days_since_first=389 prior=10% beyond=True one_line=False known_day=False px 8.84->35.90
+  2024-09-30 301551.SZ ret_adj=+257.4250% ret_raw=+257.4250% factor_rel=1.000000 days_since_first=2 prior=20% beyond=True one_line=False known_day=True px 50.64->181.00
+  2026-09-18 601091.SH ret_adj=+177.7404% ret_raw=+177.7404% factor_rel=1.000000 days_since_first=1 prior=10% beyond=True one_line=False known_day=False px 20.80->57.77
+|ret|>21% cells: 301 ; of which days_since_first<5: 195 ; on 208 distinct days
+days with most >21% moves: {'2020-08-25': 8, '2021-02-02': 7, '2022-05-25': 5, '2021-02-01': 4, '2022-06-06': 4, '2026-06-01': 4, '2021-02-09': 3, '2020-02-03': 3, '2022-05-31': 3, '2023-06-19': 3}
+|ret|>21% classification: {'new': 195, 'resume': 85, 'other': 21}
+  2022-08-22 000670.SZ ret=+488.44% cat=resume days_since_first=639 days_since_last_trade=590
+  2020-12-16 000995.SZ ret=+314.99% cat=resume days_since_first=231 days_since_last_trade=None
+  2021-08-10 000792.SZ ret=+306.11% cat=resume days_since_first=389 days_since_last_trade=312
+  2024-09-30 301551.SZ ret=+257.42% cat=new    days_since_first=2 days_since_last_trade=1
+  2026-09-18 601091.SH ret=+177.74% cat=new    days_since_first=1 days_since_last_trade=1
+  2020-02-03 688026.SH ret=+108.54% cat=new    days_since_first=2 days_since_last_trade=1
+  2021-02-01 300939.SZ ret=+100.99% cat=new    days_since_first=2 days_since_last_trade=1
+  2024-06-05 600766.SH ret=-96.44% cat=resume days_since_first=1070 days_since_last_trade=24
+  2024-09-30 688615.SH ret=+95.99% cat=new    days_since_first=2 days_since_last_trade=1
+  2026-06-26 002898.SZ ret=-95.78% cat=resume days_since_first=1568 days_since_last_trade=37
+  2026-06-23 002808.SZ ret=-92.93% cat=resume days_since_first=1565 days_since_last_trade=34
+  2026-06-18 300029.SZ ret=-92.78% cat=resume days_since_first=1563 days_since_last_trade=33
+
+====================================================================================================
+PART D  报告关键数字独立复算（规模 / 掩码 / 停牌 / 一字板 / 涨跌停极端日 / 股票池）
+====================================================================================================
+panel: 1643 dates x 5451 symbols ; 2020-01-02 ~ 2026-10-16 ; SH 2413 / SZ 3038
+valid cells per field: {'open': 7840790, 'high': 7840790, 'low': 7840790, 'close': 7840790, 'amt': 7840790, 'num_trades': 7835583, 'cumadj': 7840788}
+mask sym-diff vs close: {'open': 0, 'high': 0, 'low': 0, 'close': 0, 'amt': 0, 'num_trades': 5363, 'cumadj': 2}
+num_trades missing: total 1,120,410 ; close-valid 5,285 ; last day 5,226 ; other days 59 on 11 days
+suspended (amt==0 & flat) : 23,229 ; one_line (h==l & amt>0): 21,869 ; flat total: 45,098
+one_line split by raw return sign: up 11,923 / down 9,908 (report: 11,923 / 9,908)
+n_listed first/median/last/max: 3,760 / 4,994 / 5,226 / 5,226 (report 3,760 / 4,994 / 5,226 / 5,226)
+n_traded first/median/last/max: 3,740 / 4,965 / 5,216 / 5,216 (report 3,740 / 4,965 / 5,216 / 5,216)
+my universe approx first/median/last/max: 0 / 4,102 / 4,917 / 5,045 (report 0 / 4,101 / 4,917 / 5,044)
+crude limit-up   max/day: 1,043 (report max 2,498)
+crude limit-down max/day: 3,140 (report max 3,638)
+price-grid touch limit-up   max/day: 2,496 (report 2,498)
+price-grid touch limit-down max/day: 3,608 (report 3,638)
+  2024-10-08 up   price_grid=2,496  report=2,498
+  2024-09-30 up   price_grid=1,155  report=1,157
+  2024-02-08 up   price_grid=793  report=800
+  2025-04-07 down price_grid=3,608  report=3,638
+  2020-02-03 down price_grid=3,313  report=3,338
+  2024-02-05 down price_grid=1,916  report=1,928
+approx cells breaching prior limit: 111 in 104 symbols (report 266 / 153)
+  2024-10-08 up   crude=863  report=2,498
+  2024-09-30 up   crude=1,043  report=1,157
+  2024-02-08 up   crude=619  report=800
+  2025-04-07 down crude=3,140  report=3,638
+  2020-02-03 down crude=3,125  report=3,338
+  2024-02-05 down crude=1,453  report=1,928
+
+====================================================================================================
+PART E  第二外部源（东方财富 http）逐格复核：OHLC + 成交额 + 前复权收益 + 事件日
+====================================================================================================
+- 600519.SH days=1,643 mismatch(o/h/l/c)=0/0/0/0 maxdiff=0.000000 amt_rel>1e-6=131/1,643 amt_max_rel=4.672691499298245e-06
+  qfq returns: days=1,642 median|diff|=6.76e-04 max=1.5169% | factor-event days=11 adj_max=0.2577% raw_max=2.2815%
+- 000001.SZ days=1,643 mismatch(o/h/l/c)=0/0/0/0 maxdiff=0.000000 amt_rel>1e-6=434/1,643 amt_max_rel=4.499442580561497e-06
+  qfq returns: days=1,642 median|diff|=1.31e-03 max=2.8308% | factor-event days=10 adj_max=0.6541% raw_max=6.8995%
+- 300750.SZ days=1,643 mismatch(o/h/l/c)=0/0/0/0 maxdiff=0.000000 amt_rel>1e-6=183/1,643 amt_max_rel=0.0003344479127832529
+  qfq returns: days=1,642 median|diff|=1.15e-03 max=5.3116% | factor-event days=10 adj_max=0.5634% raw_max=47.7914%
+- 688981.SH days=1,509 mismatch(o/h/l/c)=0/0/0/0 maxdiff=0.000000 amt_rel>1e-6=267/1,509 amt_max_rel=0.0007286440390166407
+  qfq returns: days=1,508 median|diff|=0.00e+00 max=0.0000% | factor-event days=0 adj_max=0.0000% raw_max=0.0000%
+event-day external re-check:
+  000670.SZ 2022-08-22 raw local +488.44% = EM +488.44% (MATCH) | local adj +488.44% vs EM qfq +488.44% | factor_rel=1.000000
+  600145.SH 2020-06-30 raw local +44.92% = EM +0.00% (CHECK) | local adj -4.91% vs EM qfq +0.00% | factor_rel=0.656140
+  600766.SH 2024-06-05 raw local -96.44% = EM -96.44% (MATCH) | local adj -96.44% vs EM qfq -96.44% | factor_rel=1.000000
+
+JSON 写出：F:\004大学学业资料\大二下-大三下\量化交易\Class4_回测\1_数据真实性验证\audit\indep_check_results.json
+CSV  写出：F:\004大学学业资料\大二下-大三下\量化交易\Class4_回测\1_数据真实性验证\audit\indep_em_check.csv

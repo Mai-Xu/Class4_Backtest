@@ -17,3 +17,4 @@ Thumbs.db
 # 核验脚手架不进仓库
 3_因子挖掘/audit/_*
 1_数据真实性验证/audit/_*.pyc
+out/*.log

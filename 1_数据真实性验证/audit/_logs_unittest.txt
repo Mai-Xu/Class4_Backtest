@@ -1,0 +1,101 @@
+test_costs_reduce_nav (test_engine.TestAdjustment.test_costs_reduce_nav) ... ok
+test_exdiv_is_return_neutral (test_engine.TestAdjustment.test_exdiv_is_return_neutral) ... ok
+test_fee_schedule (test_engine.TestAdjustment.test_fee_schedule) ... ok
+test_nav_identity_on_real_data (test_engine.TestAdjustment.test_nav_identity_on_real_data) ... ok
+test_raw_price_accounting_would_be_wrong (test_engine.TestAdjustment.test_raw_price_accounting_would_be_wrong)
+反例：若用原始价记账，除权日会凭空亏 5%。 ... ok
+test_equal_weight_tracks_market (test_engine.TestBenchmark.test_equal_weight_tracks_market) ... ok
+test_drawdown_and_stats (test_engine.TestMetrics.test_drawdown_and_stats) ... ok
+test_execution_report_shape (test_engine.TestMetrics.test_execution_report_shape) ... ok
+test_limit_down_allows_buy (test_engine.TestPriceLimitRules.test_limit_down_allows_buy)
+一字跌停时**买入**允许：卖盘堆积，买方反而容易成交。 ... ok
+test_limit_up_allows_sell (test_engine.TestPriceLimitRules.test_limit_up_allows_sell)
+一字涨停时**卖出**允许：买盘堆积，卖方容易成交。 ... ok
+test_limit_up_price_is_grid_aligned (test_engine.TestPriceLimitRules.test_limit_up_price_is_grid_aligned)
+涨停价必须落在 0.01 元网格上，且用四舍五入（非银行家舍入）。 ... ok
+test_one_line_limit_down_blocks_sell (test_engine.TestPriceLimitRules.test_one_line_limit_down_blocks_sell)
+一字跌停：卖不出（无买盘）。 ... ok
+test_one_line_limit_up_blocks_buy (test_engine.TestPriceLimitRules.test_one_line_limit_up_blocks_buy)
+一字涨停：全天单一价格，买不进；打开涨停后次日补单。 ... ok
+test_open_at_limit_up_blocks_buy (test_engine.TestPriceLimitRules.test_open_at_limit_up_blocks_buy)
+开盘即涨停（盘中打开）也买不到 —— 开盘价已是涨停价，无卖盘。 ... ok
+test_suspension_blocks_all (test_engine.TestPriceLimitRules.test_suspension_blocks_all)
+停牌：买卖全部拒绝。 ... ok
+test_cash_scaling_no_overdraft (test_engine.TestTradeMechanics.test_cash_scaling_no_overdraft)
+目标权重之和超过 1 时按比例缩放，现金绝不为负。 ... ok
+test_no_short_and_no_leverage (test_engine.TestTradeMechanics.test_no_short_and_no_leverage)
+负权重被截断、总权重被限制在 gross_limit 内。 ... ok
+test_participation_cap (test_engine.TestTradeMechanics.test_participation_cap)
+参与率上限：单日成交额不超过该股当日成交额的规定比例。 ... ok
+test_signal_then_next_open (test_engine.TestTradeMechanics.test_signal_then_next_open)
+信号在 t 日收盘产生，最早 t+1 日开盘成交，同日绝不成交。 ... ok
+test_t1_frozen_never_triggers (test_engine.TestTradeMechanics.test_t1_frozen_never_triggers)
+T+1：先卖后买 + 每日单次下单，结构上不可能卖出当日买入。 ... ok
+test_buffer_eventually_exits (test_factors.TestBuffer.test_buffer_eventually_exits) ... ok
+test_buffer_keeps_incumbent (test_factors.TestBuffer.test_buffer_keeps_incumbent) ... ok
+test_buffer_respects_universe (test_factors.TestBuffer.test_buffer_respects_universe) ... ok
+test_no_buffer_is_pure_topn (test_factors.TestBuffer.test_no_buffer_is_pure_topn) ... ok
+test_zscore_handles_nan_and_degenerate (test_factors.TestCrossSection.test_zscore_handles_nan_and_degenerate) ... ok
+test_zscore_is_standardised (test_factors.TestCrossSection.test_zscore_is_standardised) ... ok
+test_all_factors_finite_on_normal_day (test_factors.TestFactorValues.test_all_factors_finite_on_normal_day) ... ok
+test_amt_trend_matches_manual (test_factors.TestFactorValues.test_amt_trend_matches_manual) ... ok
+test_beta_of_market_is_one (test_factors.TestFactorValues.test_beta_of_market_is_one)
+等权市场组合对自己的 beta 应该接近 1。 ... ok
+test_dvol_le_vol (test_factors.TestFactorValues.test_dvol_le_vol) ... ok
+test_ivol_le_total_vol (test_factors.TestFactorValues.test_ivol_le_total_vol)
+特质波动率 <= 总波动（残差不可能比原序列更分散太多）。 ... ok
+test_maxdd_range (test_factors.TestFactorValues.test_maxdd_range) ... ok
+test_skew_kurt_signs (test_factors.TestFactorValues.test_skew_kurt_signs) ... ok
+test_amihud_uses_only_past_window (test_factors.TestNoLookahead.test_amihud_uses_only_past_window) ... ok
+test_factor_is_causal (test_factors.TestNoLookahead.test_factor_is_causal)
+把 t 之后的数据整段改成 NaN，t 日的因子值必须一字不变。 ... ok
+test_market_proxy_is_causal (test_factors.TestNoLookahead.test_market_proxy_is_causal)
+市场收益代理 ret_ok 的横截面均值本身是逐日独立的。 ... ok
+test_column_permutation_invariance (test_factors.TestSystemInvariants.test_column_permutation_invariance)
+把证券顺序整体打乱，净值应当不变（浮点求和顺序误差除外）。 ... ok
+test_deterministic (test_factors.TestSystemInvariants.test_deterministic) ... ok
+test_panel_strategy_uses_latest_signal (test_factors.TestWeightConstruction.test_panel_strategy_uses_latest_signal)
+周频调仓时，非面板日应沿用最近一期信号，而不是变成空仓。 ... ok
+test_weights_are_causal (test_factors.TestWeightConstruction.test_weights_are_causal)
+信号面板只影响 t 及之后，不会倒回去污染已发生的净值。 ... ok
+test_weights_respect_universe_and_cap (test_factors.TestWeightConstruction.test_weights_respect_universe_and_cap) ... ok
+test_adjusted_price_continuity (test_lib.TestCumadj.test_adjusted_price_continuity)
+除权日的复权收益应当连续，不应出现原始价的跳空。 ... ok
+test_clean_is_constant_within_non_event_days (test_lib.TestCumadj.test_clean_is_constant_within_non_event_days) ... ok
+test_denoise_and_preserve (test_lib.TestCumadj.test_denoise_and_preserve) ... ok
+test_cap_never_violated_on_normal_days (test_lib.TestLimits.test_cap_never_violated_on_normal_days) ... ok
+test_extreme_days_match_real_events (test_lib.TestLimits.test_extreme_days_match_real_events) ... ok
+test_limit_price_grid (test_lib.TestLimits.test_limit_price_grid)
+涨停价必须落在 0.01 元的整数价格上。 ... ok
+test_new_stock_window_respects_regime (test_lib.TestLimits.test_new_stock_window_respects_regime) ... ok
+test_prior_by_board (test_lib.TestLimits.test_prior_by_board) ... ok
+test_st_detection_is_conservative (test_lib.TestLimits.test_st_detection_is_conservative) ... ok
+test_st_rule_wall (test_lib.TestLimits.test_st_rule_wall) ... ok
+test_covid_reopening_day (test_lib.TestMasks.test_covid_reopening_day)
+2020-02-03（疫情后开市首日）应出现大规模一字跌停。 ... ok
+test_listed_partition (test_lib.TestMasks.test_listed_partition) ... ok
+test_one_line_blocks_trade_direction (test_lib.TestMasks.test_one_line_blocks_trade_direction) ... ok
+test_one_line_is_traded_but_flat (test_lib.TestMasks.test_one_line_is_traded_but_flat) ... ok
+test_suspension_convention (test_lib.TestMasks.test_suspension_convention)
+停牌 = amt==0 且 OHLC 四价全等（前收盘携程）。 ... ok
+test_market_vol_reasonable (test_lib.TestReturns.test_market_vol_reasonable) ... ok
+test_ret_fwd_alignment (test_lib.TestReturns.test_ret_fwd_alignment) ... ok
+test_ret_ok_is_subset_of_ret (test_lib.TestReturns.test_ret_ok_is_subset_of_ret) ... ok
+test_suspension_return_is_zero (test_lib.TestReturns.test_suspension_return_is_zero)
+停牌且当日无除权时，复权收益应为 0（头寸价值不变）。 ... ok
+test_half_up_not_bankers (test_lib.TestRounding.test_half_up_not_bankers) ... ok
+test_all_fields_share_columns (test_lib.TestStructure.test_all_fields_share_columns) ... ok
+test_mask_alignment (test_lib.TestStructure.test_mask_alignment) ... ok
+test_ohlc_sanity (test_lib.TestStructure.test_ohlc_sanity) ... ok
+test_shape_and_alignment (test_lib.TestStructure.test_shape_and_alignment) ... ok
+test_listed_days_is_cumulative_count (test_lib.TestUniverse.test_listed_days_is_cumulative_count) ... ok
+test_min_listed_days_respected (test_lib.TestUniverse.test_min_listed_days_respected) ... ok
+test_no_lookahead_in_adv (test_lib.TestUniverse.test_no_lookahead_in_adv)
+滚动均值只能用当日及此前数据。 ... ok
+test_size_evolves (test_lib.TestUniverse.test_size_evolves) ... ok
+test_subset_and_no_untradable (test_lib.TestUniverse.test_subset_and_no_untradable) ... ok
+
+----------------------------------------------------------------------
+Ran 70 tests in 51.489s
+
+OK

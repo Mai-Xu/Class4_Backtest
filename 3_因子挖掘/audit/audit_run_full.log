@@ -1,0 +1,218 @@
+==============================================================================================================
+被审文件: F:\004大学学业资料\大二下-大三下\量化交易\Class4_回测\factor_zoo\liquidity.py
+面板: 1643 交易日 x 5451 证券 | 2020-01-02 ~ 2026-10-16 | 因子 14 个
+==============================================================================================================
+
+[0] 因子清单（desc 为注册表声称；win 为源码阅读的窗口行数，稍后扰动扫描独立复核）
+  lq_amt_log20           win=20   dir=-1  log(20日均成交额)：流动性水平/规模代理
+  lq_amt_rel20_60        win=60   dir=-1  当日额/60日均额-1：相对活跃度（成交额代理换手）
+  lq_amihud20            win=20   dir=+1  Amihud非流动性 mean(|r|/amt,20)×1e8
+  lq_amihud60            win=60   dir=+1  Amihud非流动性 mean(|r|/amt,60)×1e8
+  lq_amt_trend20_120     win=120  dir=-1  均额20/120-1：中短期量能放大
+  lq_amt_slope60         win=60   dir=-1  log成交额60日回归斜率×100（%/日）
+  lq_amt_cv60            win=60   dir=-1  成交额变异系数 std/mean（60日）
+  lq_amt_stab60          win=61   dir=-1  log成交额一阶自相关（60对）：活跃度稳定性
+  lq_trade_size20        win=20   dir=+1  单笔均额 mean(log(amt/笔数),20)：机构参与度代理
+  lq_trade_size_chg      win=120  dir=+1  单笔均额变化 log均额20-log均额120
+  lq_trade_size_skew60   win=60   dir=+1  单笔均额偏度（60日）：偶发大单（机构痕迹）
+  lq_amt_impact60        win=61   dir=-1  -corr(Δlog成交额,收益)（60日）：放量下跌程度
+  lq_nt_log20            win=20   dir=-1  log(20日均成交笔数)：交易参与广度
+  lq_nt_trend20_120      win=120  dir=-1  笔数20/120-1：成交笔数趋势（交易变密）
+
+[A] 独立重算：逐格对比（2020-03-31(t=57)  2021-06-30(t=360)  2022-12-30(t=727)  2023-07-31(t=866)  2024-06-28(t=1086)  2025-06-30(t=1328)）
+
+  max|diff|（行=因子，列=日期，空格=NaN）:
+date                  2020-03-31  2021-06-30  2022-12-30  2023-07-31  2024-06-28  2025-06-30
+factor                                                                                      
+lq_amt_log20           0.000e+00   0.000e+00   0.000e+00   0.000e+00   1.776e-15   0.000e+00
+lq_amt_rel20_60        0.000e+00   0.000e+00   0.000e+00   0.000e+00   2.220e-16   1.776e-15
+lq_amihud20            2.220e-16   3.638e-12   5.551e-17   4.441e-16   8.882e-16   5.551e-17
+lq_amihud60            4.441e-16   2.220e-16   5.551e-17   1.110e-16   1.776e-15   1.665e-16
+lq_amt_trend20_120     0.000e+00   0.000e+00   0.000e+00   0.000e+00   4.441e-16   8.882e-16
+lq_amt_slope60         5.762e-14   4.707e-14   4.707e-14   4.619e-14   5.240e-14   4.663e-14
+lq_amt_cv60            4.441e-16   4.441e-16   2.220e-16   4.441e-16   4.441e-16   6.661e-16
+lq_amt_stab60          8.882e-16   9.992e-16   8.882e-16   8.882e-16   1.110e-15   8.882e-16
+lq_trade_size20        5.329e-15   7.105e-15   5.329e-15   5.329e-15   5.329e-15   5.329e-15
+lq_trade_size_chg      0.000e+00   8.882e-15   7.105e-15   8.882e-15   7.105e-15   7.105e-15
+lq_trade_size_skew60   4.450e-02   3.353e-02   3.263e-02   2.999e-02   3.140e-02   3.207e-02
+lq_amt_impact60        6.106e-16   6.106e-16   5.551e-16   7.772e-16   6.661e-16   6.661e-16
+lq_nt_log20            0.000e+00   0.000e+00   0.000e+00   0.000e+00   0.000e+00   0.000e+00
+lq_nt_trend20_120      0.000e+00   0.000e+00   0.000e+00   0.000e+00   0.000e+00   0.000e+00
+
+  汇总（6 日合计）:
+                      max_diff  nan_mismatch  big_diff  min_pairs  mod_inf
+factor                                                                    
+lq_amt_log20         1.776e-15             0         0       3790        0
+lq_amt_rel20_60      1.776e-15             0         0       3769        0
+lq_amihud20          3.638e-12             0         0       3780        0
+lq_amihud60          1.776e-15             0         0       3768        0
+lq_amt_trend20_120   8.882e-16             0         0          0        0
+lq_amt_slope60       5.762e-14             0         0       3770        0
+lq_amt_cv60          6.661e-16             0         0       3770        0
+lq_amt_stab60        1.110e-15             0         0       3768        0
+lq_trade_size20      7.105e-15             0         0       3780        0
+lq_trade_size_chg    8.882e-15             0         0          0        0
+lq_trade_size_skew60 4.450e-02             0     28101       3770        0
+lq_amt_impact60      7.772e-16             0         0       3768        0
+lq_nt_log20          0.000e+00             0         0       3790        0
+lq_nt_trend20_120    0.000e+00             0         0          0        0
+  用时 19.1s
+
+[A1.5] 随机日期复核（2022-09-26, 2023-03-01, 2023-09-05, 2024-01-12, 2024-06-25, 2025-01-09, 2025-05-08, 2026-05-27）
+                      max_diff  nan_mismatch  big_diff
+factor                                                
+lq_amt_log20         1.776e-15             0         0
+lq_amt_rel20_60      8.882e-16             0         0
+lq_amihud20          1.421e-14             0         0
+lq_amihud60          3.553e-15             0         0
+lq_amt_trend20_120   1.332e-15             0         0
+lq_amt_slope60       5.040e-14             0         0
+lq_amt_cv60          5.551e-16             0         0
+lq_amt_stab60        1.110e-15             0         0
+lq_trade_size20      5.329e-15             0         0
+lq_trade_size_chg    8.882e-15             0         0
+lq_trade_size_skew60 5.859e-02             0     40261
+lq_amt_impact60      8.882e-16             0         0
+lq_nt_log20          0.000e+00             0         0
+lq_nt_trend20_120    0.000e+00             0         0
+
+[A2] lq_trade_size_skew60 归一化专项（模块 = 教科书三阶矩偏度 × sqrt((n-1)/n)）
+     date           max|mod-pop|   max|mod-sty|    max rel dev
+     2020-03-31        4.450e-02      1.001e-13      1.399e-02
+     2021-06-30        3.353e-02      1.580e-13      1.399e-02
+     2022-12-30        3.263e-02      1.443e-13      1.399e-02
+     2023-07-31        2.999e-02      1.138e-13      1.399e-02
+     2024-06-28        3.140e-02      1.223e-13      1.399e-02
+     2025-06-30        3.207e-02      1.177e-13      1.290e-02
+
+[A3] lq_amt_rel20_60 分母含 t 的影响（对照：分母改为 [t-60, t-1]）
+     date            changed      max|diff|    pearson   spearman
+     2020-03-31         3769        11.1563     0.9875     1.0000
+     2021-06-30         4286         7.0360     0.9951     0.9997
+     2022-12-30         4865        10.5033     0.9910     0.9999
+     2023-07-31         4970         7.4232     0.9948     0.9997
+     2024-06-28         5081         2.1353     0.9981     0.9996
+     2025-06-30         5126         5.4743     0.9962     0.9998
+
+[C] 端点扰动扫描（t=1328, 2025-06-30；逐 lag 改写一行 A/NT/R，实测最长生效滞后）
+     factor                  win_src  win_emp  hit@w-1      hit@w   判定
+     lq_amt_log20                 20       20     5115          0   OK
+     lq_amt_rel20_60              60       60     5104          0   OK
+     lq_amihud20                  20       20     5113          0   OK
+     lq_amihud60                  60       60     5111          0   OK
+     lq_amt_trend20_120          120      120     5079          0   OK
+     lq_amt_slope60               60       60     5111          0   OK
+     lq_amt_cv60                  60       60     5111          0   OK
+     lq_amt_stab60                61       61     5109          0   OK
+     lq_trade_size20              20       20     5113          0   OK
+     lq_trade_size_chg           120      120     5079          0   OK
+     lq_trade_size_skew60         60       60     5111          0   OK
+     lq_amt_impact60              61       61     5109          0   OK
+     lq_nt_log20                  20       20     5115          0   OK
+     lq_nt_trend20_120           120      120     5079          0   OK
+     用时 19.9s
+
+[D] 未来扰动检验：改写 t+1..t+30 的 A/NT/R/C，输出必须不变
+     factor                      t=360     t=1328
+     lq_amt_log20                    0          0
+     lq_amt_rel20_60                 0          0
+     lq_amihud20                     0          0
+     lq_amihud60                     0          0
+     lq_amt_trend20_120              0          0
+     lq_amt_slope60                  0          0
+     lq_amt_cv60                     0          0
+     lq_amt_stab60                   0          0
+     lq_trade_size20                 0          0
+     lq_trade_size_chg               0          0
+     lq_trade_size_skew60            0          0
+     lq_amt_impact60                 0          0
+     lq_nt_log20                     0          0
+     lq_nt_trend20_120               0          0
+
+[E] 停牌/零值污染量化
+     面板总量: amt==0 共 23229 格（0.3% of listed），涉及 1606 只股票、1638 个交易日；num_trades==0 共 23254 格；两者同时为 0: 23182 格
+     注：amt==0 且 listed=True 即框架定义的停牌格 = 23229
+     (a) 停牌行是否被排除：模块 vs 把 amt==0 / num_trades==0 当有效观测的朴素实现
+         零格=窗口内零格数; 涉零=窗口内有零格的股票数; 变了=因子值变化的股票数(6日最大);
+         变NaN/变inf=因零值污染由(有值/缺失)变为 NaN / ±inf 的股票数; NaN位=NaN 位置变化数; max|diff| 只统计双方有限格
+         factor                       零格       涉零       变了     变NaN     变inf     NaN位  max|diff|
+         lq_amt_log20                434       68       68        0       13       15     0.6931
+         lq_amt_rel20_60            1380      262      258        0       12       24      2.553
+         lq_amihud20                 434       68       55       55        0       55   2.22e-16
+         lq_amihud60                1380      262      248      248        0      248  4.441e-16
+         lq_amt_trend20_120         2467      348      336        0        4       18      1.342
+         lq_amt_slope60             1380      262      248      248        0      248  5.762e-14
+         lq_amt_cv60                1380      262      255        0        0       31     0.4592
+         lq_amt_stab60              1450      267      253      253        0      253   1.11e-15
+         lq_trade_size20             434       68       55       55        0       55  7.105e-15
+         lq_trade_size_chg          2467      348      318      318        0      318  8.882e-15
+         lq_trade_size_skew60       1380      262      248      248        0      248   1.58e-13
+         lq_amt_impact60            1450      267      253      253        0      253  7.772e-16
+         lq_nt_log20                 434       68       68        0       13       15     0.6931
+         lq_nt_trend20_120          2467      348      332        0        0       18     0.9589
+     (b) 停牌当天（A[t]==0）模块取值：以 2025-06-30 为例（14 只当日停牌）
+         factor                      当日停牌数     其中非NaN
+         lq_amt_log20                   14         10
+         lq_amt_rel20_60                14          0
+         lq_amihud20                    14         10
+         lq_amihud60                    14         10
+         lq_amt_trend20_120             14         10
+         lq_amt_slope60                 14         10
+         lq_amt_cv60                    14         10
+         lq_amt_stab60                  14         10
+         lq_trade_size20                14         10
+         lq_trade_size_chg              14         10
+         lq_trade_size_skew60           14         10
+         lq_amt_impact60                14         10
+         lq_nt_log20                    14         10
+         lq_nt_trend20_120              14         10
+
+[F1] Amihud 分子：复权收益(R) vs 未复权收益(ret_raw)
+     date            changed      max|diff|    adj_nan    raw_nan
+     2021-06-30         1237         0.2024       1123       1123  [lq_amihud20]
+     2021-06-30         2169        0.06746       1172       1172  [lq_amihud60]
+     2023-07-31          668         0.2087        447        447  [lq_amihud20]
+     2023-07-31         3056        0.06955        488        488  [lq_amihud60]
+     2025-06-30         1550        0.06889        315        315  [lq_amihud20]
+     2025-06-30         2550        0.02296        322        322  [lq_amihud60]
+     模块输出是否正确使用复权口径: 是
+
+[F2] 成交额单位自检（amt/num_trades 单笔均额应落在 A 股合理量级）
+     amt 分位(元): p10=1.96e+07 p50=8.85e+07 p90=5.61e+08
+     单笔均额 amt/NT 分位(元): p10=4.53e+03 p50=9.59e+03 p90=1.92e+04
+     Amihud 因子中位量级: lq_amihud20=0.0122, lq_amihud60=0.0162
+
+[F4] lq_trade_size_chg 口径歧义：代码=mean(log sz) 之差；另一读法=log(mean sz) 之差
+     date            changed      max|diff|    pearson   spearman
+     2020-03-31            0            nan        nan        nan
+     2021-06-30         4212         0.2779     0.9931     0.9952
+     2022-12-30         4823         0.2301     0.9901     0.9935
+     2023-07-31         4937         0.3481     0.9895     0.9942
+     2024-06-28         5088         0.4237     0.9900     0.9933
+     2025-06-30         5117         0.2649     0.9910     0.9941
+
+[F3] 源码静态扫描（只读）
+     切片上界（含 t）          命中 3 处: 96:NT = C.NT[lo:int(t) + 1] | 132:A = C.A[lo:int(t) + 1] | 238:R = C.R[lo:int(t) + 1]
+     对已截断窗口切片           命中 5 处: 185:okp = ok[1:] & ok[:-1] | 186:c = _corr_ok(L[1:], L[:-1], okp) | 241:d = L[1:] - L[:-1]                      # 当日 log 成交额变化 | 242:r = R[1:]                               # 与 d 逐行对齐（同一天）
+     直接访问 md            命中 0 处
+
+[B] 全样本扫描（步长 1；每因子 1623 个日期）
+                      days    cov  inf_days  bad_shape  bad_dtype  valid_days
+factor                                                                       
+lq_amt_log20          1623 0.8749         0          0          0        1623
+lq_amt_rel20_60       1623 0.8656         0          0          0        1614
+lq_amihud20           1623 0.8734         0          0          0        1623
+lq_amihud60           1623 0.8631         0          0          0        1607
+lq_amt_trend20_120    1623 0.8479         0          0          0        1584
+lq_amt_slope60        1623 0.8637         0          0          0        1608
+lq_amt_cv60           1623 0.8637         0          0          0        1608
+lq_amt_stab60         1623 0.8630         0          0          0        1607
+lq_trade_size20       1623 0.8736         0          0          0        1623
+lq_trade_size_chg     1623 0.8479         0          0          0        1584
+lq_trade_size_skew60  1623 0.8637         0          0          0        1608
+lq_amt_impact60       1623 0.8630         0          0          0        1607
+lq_nt_log20           1623 0.8749         0          0          0        1623
+lq_nt_trend20_120     1623 0.8479         0          0          0        1584
+     0 个 inf 格: 是；用时 226.8s
+
+明细已保存: liquidity_naive_detail.csv / liquidity_zero_impact.csv / liquidity_zero_impact_detail.csv / liquidity_scan.csv

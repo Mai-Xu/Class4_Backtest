@@ -1,0 +1,107 @@
+{
+ "env": {
+  "python": "3.13.11 (tags/v3.13.11:6278944, Dec  5 2025, 16:26:58) [MSC v.1944 64 bit (AMD64)]",
+  "pandas": "2.2.3",
+  "numpy": "2.2.0",
+  "platform": "Windows-11-10.0.26100-SP0",
+  "time": "2026-10-16T23:13:03.817852"
+ },
+ "files": [
+  {
+   "path": "1_数据真实性验证\\README.md",
+   "sha256": "f8b9057f0cb5d302cc0daeae5a09fc774c8a7198a556b45a558339edab5e35fa",
+   "size": 3857,
+   "mtime": "2026-10-16 21:50:28"
+  },
+  {
+   "path": "1_数据真实性验证\\s01_audit.py",
+   "sha256": "8424c82273b63d611a4b3c9d2b1587e36e31c73f2b349cdb48d39267292cbc8b",
+   "size": 18969,
+   "mtime": "2026-10-16 21:50:28"
+  },
+  {
+   "path": "1_数据真实性验证\\s02_external_check.py",
+   "sha256": "8a8d160f270358652e25874a5d6929124da56305392101a1fcb4b0c3245602a4",
+   "size": 20007,
+   "mtime": "2026-10-16 21:50:44"
+  },
+  {
+   "path": "1_数据真实性验证\\out\\data_audit.md",
+   "sha256": "7548c993937945afd1e12ac6d674801b683f92c2c502229ff32658edb8240a7e",
+   "size": 9168,
+   "mtime": "2026-10-16 21:51:34"
+  },
+  {
+   "path": "1_数据真实性验证\\out\\external_check.md",
+   "sha256": "5bca112d3a9174fe6076f7c87645f3a1e9571fba6a0a6ffb3e20a023a6c42e0b",
+   "size": 6790,
+   "mtime": "2026-10-16 20:09:56"
+  },
+  {
+   "path": "1_数据真实性验证\\out\\figures\\01_cumadj_noise.png",
+   "sha256": "9b8d01d2ff85b4580089aff88687a4b2bf3403080c3e48135765db1ac1a34800",
+   "size": 47794,
+   "mtime": "2026-10-16 21:51:33"
+  },
+  {
+   "path": "1_数据真实性验证\\out\\figures\\01_market.png",
+   "sha256": "e068f386332d5e09f9c5133741cd4066ad8bcdd9bd65ae91e5d6d60998bd058e",
+   "size": 132627,
+   "mtime": "2026-10-16 21:51:33"
+  },
+  {
+   "path": "1_数据真实性验证\\out\\figures\\01_price_limit.png",
+   "sha256": "36b6f57b46be708479318b55a2c57f9844d83426d95a679537ca5abdf026007f",
+   "size": 140861,
+   "mtime": "2026-10-16 21:51:33"
+  },
+  {
+   "path": "1_数据真实性验证\\out\\figures\\01_universe.png",
+   "sha256": "2bf706098a18b2b22ee9b3569b8f16b1337996ae8f2396a219c4334fb42b7a2c",
+   "size": 103379,
+   "mtime": "2026-10-16 21:51:32"
+  },
+  {
+   "path": "1_数据真实性验证\\out\\tables\\01_daily_market.csv",
+   "sha256": "8b21764a1e6f51054a2f914fd232edd4129acf97b72935b8e5cd9dcd056fe405",
+   "size": 123957,
+   "mtime": "2026-10-16 21:51:34"
+  },
+  {
+   "path": "1_数据真实性验证\\out\\tables\\01_limit_ratio_diag.csv",
+   "sha256": "3b816c445000a79a4ccacfb49867f2d9a2a57541888b54a7ade48704dd299ee0",
+   "size": 463567,
+   "mtime": "2026-10-16 21:51:28"
+  },
+  {
+   "path": "1_数据真实性验证\\out\\tables\\01_liquidity.csv",
+   "sha256": "6f869461718f795bc81385d41932b21f28829d17e06929c5dad335d40194478a",
+   "size": 280,
+   "mtime": "2026-10-16 21:51:31"
+  },
+  {
+   "path": "1_数据真实性验证\\out\\tables\\01_mask_report.csv",
+   "sha256": "af1648e612129a9c23d9678f6c3f08c81d2f5ca5c77d48b5ce811422697aea4a",
+   "size": 451,
+   "mtime": "2026-10-16 21:51:28"
+  },
+  {
+   "path": "1_数据真实性验证\\out\\tables\\02_external_amount_check.csv",
+   "sha256": "75676df6d35c7b30b9a63f6e71061a1c02a8aa21d29d37f7cd4682b75830909d",
+   "size": 631,
+   "mtime": "2026-10-16 20:09:56"
+  },
+  {
+   "path": "1_数据真实性验证\\out\\tables\\02_external_price_check.csv",
+   "sha256": "8912d0593d31e201a409b3b3550fe43cc6f4e0696f84f933dda83f48889331b6",
+   "size": 687,
+   "mtime": "2026-10-16 20:09:56"
+  },
+  {
+   "path": "1_数据真实性验证\\out\\tables\\02_external_ret_check.csv",
+   "sha256": "cc47e245b466ea53d98058f187b35502e2413db607040e038c40e49f795662e9",
+   "size": 1181,
+   "mtime": "2026-10-16 20:09:56"
+  }
+ ]
+}

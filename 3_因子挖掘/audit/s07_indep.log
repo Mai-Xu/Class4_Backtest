@@ -1,0 +1,187 @@
+
+============================================================================================
+## 0. 载入（MarketData / vv_config.json / 调仓网格）
+============================================================================================
+   feathers: 1643 交易日 x 5451 证券, 2020-01-02 ~ 2026-10-16
+   调仓网格 n_period                                  70
+   调仓网格 首/末                                       2021-01-29 / 2026-10-16
+   is_end                                         2023-12-31
+   sel_factors(vv_config)                         ['ivol', 'dvol', 'skew', 'kurt', 'vol_trend', 'vol_of_vol', 'amt_trend', 'amihud', 'trade_size', 'pv_corr']
+   n_hold / rebal / cash                          50 / M / 100000000.0
+
+============================================================================================
+## 1. 前瞻收益对齐（复核项 2）
+============================================================================================
+   全矩阵 max|s07_fwd - md.ret_fwd(21)|              0
+   全矩阵 单边有限格 (s07独有 / lib独有)                      0 / 0（共有 7726417 格）
+   调仓网格上 max|差分|                                  0
+   调仓网格上 单边有限格 (s07独有 / lib独有)                    0 / 0（共有 334418 格）
+   抽 373 组 (股票,调仓日)：max|shift(-h) - 21日复利|        1.11e-15
+   样例 600456.SH @ 2026-05-29                      adj[t-1]=75.8507 adj[t]=72.4887 adj[t+21]=62.7174
+   样例 fwd = adj[t+21]/adj[t]-1                    -0.1347975
+   样例 若含当天: adj[t+21]/adj[t-1]-1                  -0.1731473
+   样例 差值（当天收益的贡献）                                 -0.038349796
+   close-close 与 open[t+1]->open[t+1+21] 均为有限的比例  1.000
+   两者 max|差|（同格，仅说明口径不同）                          0.882
+
+============================================================================================
+## 2. 因子面板：缓存一致性 / 无未来函数截断测试（复核项 2·3）
+============================================================================================
+   13 因子 x 70 调仓日 全量现算耗时(s)                       9.9
+   缓存面板 vs 现算面板 最大 max|差分|                        0
+   缓存面板 vs 现算面板 单边有限格合计                           0
+   索引一致性 (缓存 index == md.dates[ts])               True
+   对照：不截断的同值拷贝 max|因子值差| / 最大相对差 / 掩码不一致因子数       1.82e-12 / 2.42e-15 / 0
+   截断未来数据后 max|因子值差| (3 日期 x 13 因子)               1.82e-12
+   截断未来数据后 最大相对差 / 掩码不一致因子数                       2.42e-15 / 0
+   结论                                             因子值只依赖 <=t 的数据（差值 = 浮点噪声，相对 1e-16）
+   我的 z-score vs s07 的 zsc 面板 max|差分|             0
+
+============================================================================================
+## 3. 股票池（复核项 4）
+============================================================================================
+   md.universe() 是逐日动态池                           True
+   池规模 首/中/末                                      0 / 4101 / 4917
+   池规模 min/max, 不同取值的个数                           0 / 5044, 867 种
+   首日池 vs 末日池 交集/并集                               0 / 4917
+   adv20 只用 <=t 数据重算 max|差分|                      0 (单边 0/0)
+   listed_days 只用 <=t 数据重算 max|差分|                0 (单边 0/0)
+   自建 t 日池 vs md.universe() 该行 不一致格数              0
+   st_like 命中证券数（全样本统计量）                          2 只: ['600182.SH', '600485.SH']
+   关掉 exclude_st 后多出来的池格数                         808
+   占池格比例                                          0.013560%
+   池内 listed_days 最小值（应 >=250）                    250
+   池内未上市(NaN 报价)格数（应 =0）                          0
+   样本内退市/停止报价证券数                                  225
+   退市后仍出现在池里的格数（应 =0）                             0
+   PanelStrategy 默认池参数                            {'min_listed_days': 250, 'min_adv': 20000000.0, 'price_min': 2.0, 'boards': None, 'exclude_st': True}
+   md.universe(**PanelStrategy._uni_kw) is md.universe() True
+
+============================================================================================
+## 4. IC 与方向一致性（复核项 2 / 6）
+============================================================================================
+   可投资域格数占池格比例                                    0.9672
+   我的 IC vs out/runs/vv_ic.csv max|差分|            5e-05（单边 0/0，共有 884 格）
+   我的方向(样本内) vs 04_factor_ic.csv 方向 不一致数          0
+   我的 IC 全样本 vs CSV 最大绝对差                         4.68e-05
+   我的 样本内t vs CSV 最大绝对差                           4.47e-05
+   按「|样本内t|>=1」重算的 sel                            ['ivol', 'dvol', 'skew', 'kurt', 'vol_trend', 'vol_of_vol', 'amt_trend', 'amihud', 'trade_size', 'pv_corr']
+   与 vv_config.sel_factors 完全一致                   True
+   入闱因子中「样本外 IC 符号会翻」的个数                          0 []
+   若改用样本外 |t|>=1 筛因子会得到的 sel（对照，s07 没用）           ['ivol', 'skew', 'vol_trend', 'vol_of_vol', 'amt_trend', 'amt_cv', 'amihud', 'trade_size', 'pv_corr']
+   样本外筛法 vs s07 实际 sel 的对称差                       ['amt_cv', 'dvol', 'kurt']
+   我独立重算的合成面板 vs s07 合成面板 max|差分|                 0
+   （用 CSV 方向 + s07 zsc）复现合成面板 max|差分|             0
+   单因子平均有效数 / 合成有效数（均值）                           4899 / 4866
+   合成有效数占单因子平均的比例                                 0.9933
+   池内平均证券数 / 池内且有合成打分数（均值）                        4281 / 4278
+
+============================================================================================
+## 5. 十分层回测（复核项 5）
+============================================================================================
+   各层(池内∩有收益)持仓数中位数 我算 vs 07_decile.csv           
+        我算  s07引擎
+D1   444.0  451.0
+D2   456.0  459.0
+D3   454.0  457.0
+D4   462.0  466.0
+D5   462.0  463.0
+D6   458.0  467.0
+D7   452.0  453.0
+D8   422.0  426.5
+D9   383.0  386.0
+D10  284.0  287.0
+   D1/D10 持仓数差（引擎 - 我算）                           7 / 2
+   每层在池内的比例（D1..D10, 中位）                          {'D1': 0.104, 'D2': 0.107, 'D3': 0.106, 'D4': 0.108, 'D5': 0.108, 'D6': 0.107, 'D7': 0.105, 'D8': 0.099, 'D9': 0.089, 'D10': 0.066}
+   D10 一期目标权重 只数 / 该层池内可观测量                       494 / 494
+   权重是否全部相等 1/k (max|w-1/k|)                      0
+   是否整层：目标数 == 层内可交易数                             True
+   引擎复现 D1 年化/夏普/持仓/换手                            -0.1273 / -0.3858 / 451 / 13.67   (07表 -0.1273 / -0.3858 / 451 / 13.67)
+   引擎复现 D10 年化/夏普/持仓/换手                           0.1547 / 0.7562 / 287 / 15.41   (07表 0.1547 / 0.7562 / 287 / 15.41)
+   引擎复现 D1/D10 年化差 |Δ|                            5.98e-06 / 3.86e-05
+   对照：D1 用含基准调仓带 2e-3 的持仓数中位数/最大                  3030 / 3686
+   独立复现 07_decile_gross.csv 的 (1+mean)^12-1 max|差| 4.69e-05
+   独立实现（open[t+1]->open[t+1+21]、等权、零成本）年化         
+     D1                                           我算 -0.0939 / s07毛收益表(21d c2c) 0.0178 / s07引擎净 -0.1273
+     D5                                           我算 0.1402 / s07毛收益表(21d c2c) 0.2215 / s07引擎净 0.0893
+     D10                                          我算 0.2016 / s07毛收益表(21d c2c) 0.2707 / s07引擎净 0.1547
+   持仓数中位数 我算 vs 引擎(净)                             {'D1': (444, 451), 'D5': (462, 463), 'D10': (284, 287)}
+   同口径分解 D1/D10：月度平均收益 -> 均值年化 vs 链式年化            D1 月均 -0.2279% -> 均值年化 -2.70% vs 链式 -9.39%（月波动 10.50%）; D10 月均 +1.6779% -> +22.10% vs +20.16%（月波动 6.33%）
+   D10-D1（我算 open2open）                           0.2955
+   D10-D1（s07 毛收益表 21d close-close）               0.2529
+   D10-D1（s07 引擎净年化）                              0.2820
+
+============================================================================================
+## 6. 合成 IC / 留一法 / 随机对照（复核项 2）
+============================================================================================
+   合成 IC 全样本 / 样本内 / 样本外                          0.1186 / 0.1436 / 0.0904
+   同一打分换 open[t+1] 口径 IC 全样本                      0.1196（close-close 为 0.1186）
+   留一法 ΔIC 我的 vs 07_loo.csv max|差分|               4.51e-05
+   随机对照 中位数 我算 vs 表                               0.164237 / 0.164237
+   随机对照 5% / 95% 分位 我算 vs 表                       0.1141/0.2170 vs 0.1141/0.2170
+   随机对照 最好/最差 我算 vs 表                             0.2807/0.0773 vs 0.2807/0.0773
+   合成 top50 毛收益 我算 vs 表                           0.223955 / 0.223955
+   随机组里超过合成的比例 (1-该值 = 表里「高于 x% 的随机组」)            0.9550 → 高于 95.5%
+   合成 top50 链式毛收益(s07 21d c2c 口径) vs 表            0.2240 / 0.2240
+   合成 top50 链式毛收益(次日开盘->下月次日开盘, 零成本) vs 引擎净       0.1795（68 期）/ 引擎净 0.1264
+
+============================================================================================
+## 7. 静态扫描：s07 里全样本统计量的出现位置（复核项 3）
+============================================================================================
+   L75    [None                  ] "maxdd": "1 - P_t / cummax(P)",
+   L112   [spearman              ] a = pd.Series(x[ok]).rank().values
+   L113   [spearman              ] b = pd.Series(y[ok]).rank().values
+   L114   [spearman              ] a = a - a.mean()
+   L115   [spearman              ] b = b - b.mean()
+   L123   [_masked_mean          ] return float(x[ok].mean()) if ok.sum() else np.nan
+   L245   [factor_corr           ] R = pd.DataFrame(A).rank(axis=1, na_option="keep").values
+   L252   [factor_corr           ] a = R[i][m] - R[i][m].mean()
+   L253   [factor_corr           ] b = R[j][m] - R[j][m].mean()
+   L294   [ic_decay              ] vals[nm] = np.nanmean(v)
+   L308   [decay_kind            ] peak = hz[int(np.nanargmax(a))]
+   L323   [coverage_table        ] rows[nm] = float(np.nanmean(np.where(n > 0, ok.sum(1) / np.maximum(n, 1), np.nan)))
+   L327   [signal_autocorr       ] def signal_autocorr(zsc: dict, mask: np.ndarray) -> pd.Series:
+   L334   [signal_autocorr       ] rows[nm] = float(np.nanmean(v))
+   L341   [run_deciles           ] R = comp.rank(axis=1, pct=True)
+   L356   [run_deciles           ] 最大回撤=st_["最大回撤"], 年换手=float(res.daily.turnover.mean() * 252),
+   L369   [decile_gross          ] R = comp.rank(axis=1, pct=True).values
+   L377   [decile_gross          ] v.append(float(np.nanmean(fwd[i][m])) if m.sum() > 10 else np.nan)
+   L380   [decile_gross          ] columns=["D%d" % (d + 1) for d in range(N_DEC)]).mean()
+   L392   [ic_stats_of           ] return dict(IC=float(s.mean()), ICIR=float(s.mean() / s.std()),
+   L393   [ic_stats_of           ] 胜率=float((s > 0).mean()), 样本内IC=float(si.mean()),
+   L394   [ic_stats_of           ] 样本外IC=float(so.mean()), 自相关=float(s.autocorr(1)))
+   L427   [random_control        ] r = float(np.nanmean(fwd[i][pick]))
+   L445   [topn_gross            ] tot *= (1.0 + float(np.nanmean(fwd[i][pick])))
+   L480   [analyze               ] IC=float(s.mean()), ICIR=float(s.mean() / s.std()) if s.std() > 0 else np.nan,
+   L481   [analyze               ] 胜率=float((s > 0).mean()),
+   L482   [analyze               ] 样本内IC=float(si.mean()), 样本外IC=float(so.mean()),
+   L483   [analyze               ] 方向=signs[nm], 方向一致=bool(np.sign(si.mean()) == np.sign(so.mean())),
+   L484   [analyze               ] IC自相关=float(s.autocorr(1)))
+   L491   [analyze               ] sac = signal_autocorr(zsc, investable)
+   L526   [analyze               ] gross_mkt = float(np.prod(1.0 + mkt_period) ** (12.0 / len(mkt_period)) - 1.0)
+   L533   [analyze               ] gross=dict(市场=float(np.mean(mkt_period)), market_ann=gross_mkt,
+   L628   [fig_ic_box            ] order = ic.mean().abs().sort_values(ascending=False).index
+   L883   [fig_spread            ] mdd = float((s / s.cummax() - 1.0).min())
+   L914   [fig_comp_nav          ] dd = (nav / nav.cummax() - 1.0)
+   L987   [fig_random            ] top = float((rand < comp_ann).mean())
+   L1013  [fig_quality           ] fig.add_vline(x=float(d["信号黏性"].mean()),
+   L1136  [card_html             ] spark = sparkline(ic_series.rolling(6, min_periods=2).mean().values, color=col)
+   L1179  [build_html            ] pool, pool_lo, pool_hi = int(np.nanmean(cnt)), int(cnt.min()), int(cnt.max())
+   L1188  [build_html            ] sp_dd = float((sp / sp.cummax() - 1.0).min())
+   L1189  [build_html            ] rand_top = float((A["rand"] < A["gross"]["comp_ann"]).mean())
+   L1322  [build_html            ] f"中位数 {np.median(A['rand']):.1%}，"
+   L1441  [write_md              ] rand_top = float((A["rand"] < A["gross"]["comp_ann"]).mean())
+   L1500  [write_md              ] % (len(A["rand"]), 100 * np.median(A["rand"]), 100 * np.percentile(A["rand"], 5),
+   L1501  [write_md              ] 100 * np.percentile(A["rand"], 95), 100 * A["gross"]["comp_ann"], 100 * rand_top))
+   L1537  [main                  ] bench_nav = (1.0 + md.equal_weight_ret()).cumprod()
+   L1579  [main                  ] savetab(pd.Series({"组数": len(rand), "中位数": float(np.median(rand)),
+   L1580  [main                  ] "5% 分位": float(np.percentile(rand, 5)),
+   L1581  [main                  ] "95% 分位": float(np.percentile(rand, 95)),
+   含全样本统计量的函数（去重）                                 ['None', '_masked_mean', 'analyze', 'build_html', 'card_html', 'coverage_table', 'decay_kind', 'decile_gross', 'factor_corr', 'fig_comp_nav', 'fig_ic_box', 'fig_quality', 'fig_random', 'fig_spread', 'ic_decay', 'ic_stats_of', 'main', 'random_control', 'run_deciles', 'signal_autocorr', 'spearman', 'topn_gross', 'write_md']
+
+============================================================================================
+## 8. 汇总
+============================================================================================
+   脚本总耗时(s)                                       31.0
+
+结果已写: F:\004大学学业资料\大二下-大三下\量化交易\Class4_回测\3_因子挖掘\audit\s07_indep_out.json
