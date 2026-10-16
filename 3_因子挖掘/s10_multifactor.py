@@ -715,24 +715,30 @@ def main():
     w("- 波动目标 %.0f%%：由 lambda'Sigma lambda 估出的组合波动线性缩放总仓位到 "
       "[%.2f, 1.0]。" % (100 * TARGET_VOL, GROSS_MIN))
     w("")
-    # 因果性自检
-    worst = 0.0
-    for i in [i for i in range(n_g) if gdates[i] >= pd.Timestamp(BT_START)][:8]:
-        hist = Rm_all[Rh.index <= gdates[i]]
-        if len(hist) < MIN_HIST + 5:
-            continue
-        a = alloc_lambda(ALLOCS["ERC"], hist)
-        b = alloc_lambda(ALLOCS["ERC"], hist[:-5])
-        worst = max(worst, float(np.max(np.abs(a - b))))
-    w(md_table(pd.DataFrame({"lambda 单边换手": pd.Series(lam_turn),
-                             "与 sleeve 近 120 日夏普的截面相关": pd.Series(chase)}).round(4),
-               "%.4f"))
-    w("")
-    w("> 第二列接近 1 说明该分配器本质上在**追近期表现好的 sleeve**；接近 0 说明它在"
-      "做风险分散而不是追涨。")
-    w("")
-    w("- **因果性自检**：把窗口末 5 天截掉后重算 ERC 权重，最大差 %.3g"
-      "（若用了未来数据一定会 > 1e-9）。" % worst)
+    # ---- 因果性自检：**未来投毒** ----
+    # 只做「把窗口末几天截掉重算」是不够的：那样分不清「对近期数据敏感」和「偷看了未来」，
+    # 而这个估计器本来就该对最近的观测敏感。能真正抓住未来函数的检验是
+    # **把截断点之后的所有收益整段换成垃圾值、重算整条分配器时间线，
+    # 再看截断点及以前的权重有没有变**（对照：让估计器多读一行未来数据，差就是 1e0 量级）。
+    _dmid = gdates[n_g // 2]
+    _m = np.asarray(Rh.index <= _dmid)
+    _Rp = Rm_all.copy()
+    _Rp[~_m] = 7.7
+    _Rhp = pd.DataFrame(_Rp, index=Rh.index, columns=fams_all)
+    poison = 0.0
+    for _an, _fn in ALLOCS.items():
+        _base = LAM6[_an]["lam"]
+        for _i, _d in enumerate(gdates):
+            if _d > _dmid:
+                break
+            _hist = _Rhp[fams_all].values[_Rhp.index <= _d]
+            if len(_hist) < MIN_HIST:
+                continue
+            _lam = alloc_lambda(_fn, _hist)
+            poison = max(poison, float(np.max(np.abs(_base[_i] - _lam))))
+    w("- **因果性自检（未来投毒）**：把 %s 之后的 sleeve 收益**整段换成垃圾值**、"
+      "重算全部 %d 个调仓日的四个分配器，只比较该日及以前的权重：最大差 **%.3g**。"
+      % (_dmid.date(), n_g, poison))
     w("")
     w("分配器给出的总仓位（波动目标）统计：")
     w("")
