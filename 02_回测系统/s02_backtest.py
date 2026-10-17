@@ -11,6 +11,8 @@ from __future__ import annotations
 # --- 项目根入 sys.path：core / factor_zoo 都是根目录下的包 ---
 import os as _os, sys as _sys
 _sys.path.insert(0, _os.path.dirname(_os.path.dirname(_os.path.abspath(__file__))))
+# --- 产物归档到本工作的目录：out/02_回测系统/ ---
+_os.environ.setdefault("CLASS4_TRACK", "02_回测系统")
 
 
 import json
@@ -20,12 +22,11 @@ import time
 import numpy as np
 import pandas as pd
 
-from core.lib import MarketData, ROOT, TAB, savetab
+from core.lib import MarketData, ROOT, TAB, savetab, RUNS
 from core.engine import Backtest, CostModel
 from core.strategies import (Momentum, Reversal, LowVol, Illiquidity, EqualWeightUniverse)
 from core import metrics
 
-RUNS = os.path.join(ROOT, "out", "runs")
 os.makedirs(RUNS, exist_ok=True)
 
 START, END = "2021-01-04", "2026-10-16"

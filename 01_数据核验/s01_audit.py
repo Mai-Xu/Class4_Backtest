@@ -22,14 +22,13 @@ if PROJ not in sys.path:
 import core.lib as _lib
 from core.lib import MarketData, FIELDS, savefig, savetab
 
-# 本目录的产物根：savefig/savetab 在**调用时**读取 lib 的模块级 FIG/TAB，
-# 所以这里改掉即可让图与表落到本目录的 out/ 下。
-_lib.FIG = os.path.join(HERE, "out", "figures")
-_lib.TAB = os.path.join(HERE, "out", "tables")
+# 产物根：与其它三项工作一致，统一落 out/01_数据核验/。
+# savefig/savetab 在**调用时**读取 lib 的模块级 FIG/TAB，所以这里改掉即可。
+ROOT = os.path.join(PROJ, "out", "01_数据核验")
+_lib.FIG = os.path.join(ROOT, "figures")
+_lib.TAB = os.path.join(ROOT, "tables")
 for _d in (_lib.FIG, _lib.TAB):
     os.makedirs(_d, exist_ok=True)
-
-ROOT = HERE                      # 报告输出根 = 本目录
 FIG, TAB = _lib.FIG, _lib.TAB
 
 import numpy as np
@@ -390,7 +389,7 @@ daily = pd.DataFrame({"n_listed": n_lis, "n_traded": n_trd, "n_universe": n_uni,
                       "amt_yuan": amt.sum(1), "ew_ret": ew})
 savetab(daily, "01_daily_market.csv")
 
-out = os.path.join(ROOT, "out", "data_audit.md")
+out = os.path.join(ROOT, "data_audit.md")
 os.makedirs(os.path.dirname(out), exist_ok=True)
 with open(out, "w", encoding="utf-8") as fh:
     fh.write("\n".join(L) + "\n")

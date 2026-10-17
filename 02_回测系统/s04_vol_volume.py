@@ -12,6 +12,8 @@ from __future__ import annotations
 # --- 项目根入 sys.path：core / factor_zoo 都是根目录下的包 ---
 import os as _os, sys as _sys
 _sys.path.insert(0, _os.path.dirname(_os.path.dirname(_os.path.abspath(__file__))))
+# --- 产物归档到本工作的目录：out/02_回测系统/ ---
+_os.environ.setdefault("CLASS4_TRACK", "02_回测系统")
 
 
 import json
@@ -21,13 +23,12 @@ import time
 import numpy as np
 import pandas as pd
 
-from core.lib import MarketData, ROOT, TAB, CACHE, savetab
+from core.lib import MarketData, ROOT, TAB, CACHE, savetab, RUNS, OUT
 from core.engine import Backtest, CostModel
 from core.strategies import build_factor_panels, PanelStrategy, FACTOR_DESC
 from core.factors import FACTORS, cs_zscore
 from core import metrics
 
-RUNS = os.path.join(ROOT, "out", "runs")
 os.makedirs(RUNS, exist_ok=True)
 FUC = os.path.join(CACHE, "factors")
 os.makedirs(FUC, exist_ok=True)
@@ -237,7 +238,7 @@ def main():
       % "、".join(sel))
     w()
 
-    out_md = os.path.join(ROOT, "out", "vol_report.md")
+    out_md = os.path.join(OUT, "vol_report.md")
     with open(out_md, "w", encoding="utf-8") as fh:
         fh.write("\n".join(L) + "\n")
     json.dump({"sel_factors": sel, "is_end": IS_END, "n_hold": N_HOLD,

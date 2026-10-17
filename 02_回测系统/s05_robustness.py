@@ -10,6 +10,8 @@ from __future__ import annotations
 # --- 项目根入 sys.path：core / factor_zoo 都是根目录下的包 ---
 import os as _os, sys as _sys
 _sys.path.insert(0, _os.path.dirname(_os.path.dirname(_os.path.abspath(__file__))))
+# --- 产物归档到本工作的目录：out/02_回测系统/ ---
+_os.environ.setdefault("CLASS4_TRACK", "02_回测系统")
 
 
 import json
@@ -19,13 +21,12 @@ import time
 import numpy as np
 import pandas as pd
 
-from core.lib import MarketData, ROOT, CACHE, savetab, FIG, savefig
+from core.lib import MarketData, ROOT, CACHE, savetab, FIG, savefig, RUNS, OUT
 from core.engine import Backtest, CostModel
 from core.strategies import build_factor_panels, PanelStrategy
 from core.factors import FACTORS
 from core import metrics
 
-RUNS = os.path.join(ROOT, "out", "runs")
 FUC = os.path.join(CACHE, "factors")
 L = []
 
@@ -347,7 +348,7 @@ def main():
       "并且**不会报错**、只会让净值看起来略微不同。本引擎在这条上是干净的。")
     w()
 
-    out_md = os.path.join(ROOT, "out", "vol_report.md")
+    out_md = os.path.join(OUT, "vol_report.md")
     # 幂等：先砍掉上一次生成的第 5 节再写，重复运行不会留下多份
     txt = ""
     if os.path.exists(out_md):

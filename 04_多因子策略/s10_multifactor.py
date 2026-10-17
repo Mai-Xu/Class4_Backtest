@@ -41,6 +41,8 @@ from __future__ import annotations
 # --- 项目根入 sys.path：core / factor_zoo 都是根目录下的包 ---
 import os as _os, sys as _sys
 _sys.path.insert(0, _os.path.dirname(_os.path.dirname(_os.path.abspath(__file__))))
+# --- 产物归档到本工作的目录：out/04_多因子策略/ ---
+_os.environ.setdefault("CLASS4_TRACK", "04_多因子策略")
 
 import argparse
 import json
@@ -51,7 +53,7 @@ import matplotlib.pyplot as plt
 import numpy as np
 import pandas as pd
 
-from core.lib import MarketData, ROOT, CACHE, FIG, TAB, savefig, savetab
+from core.lib import MarketData, ROOT, CACHE, FIG, TAB, savefig, savetab, RUNS, OUT
 from core.engine import Backtest, CostModel
 from core.strategies import Strategy
 from core import metrics
@@ -59,7 +61,6 @@ from factor_zoo.ctx import Ctx
 from factor_zoo.panels import build_zoo_panels
 from factor_zoo import registry
 
-RUNS = os.path.join(ROOT, "out", "runs")
 ZOO = os.path.join(CACHE, "zoo")
 os.makedirs(RUNS, exist_ok=True)
 os.makedirs(ZOO, exist_ok=True)
@@ -1278,7 +1279,7 @@ def main():
     ax.grid(alpha=0.3, axis="y")
     savefig(fig, "10_multifactor_family_ic.png")
 
-    with open(os.path.join(ROOT, "out", "multifactor_report.md"), "w", encoding="utf-8") as fh:
+    with open(os.path.join(OUT, "multifactor_report.md"), "w", encoding="utf-8") as fh:
         fh.write("\n".join(L) + "\n")
     cfg = dict(cash=CASH, commission=COMMISSION, stamp=STAMP, start=BT_START, end=BT_END,
                signal0=SIGNAL0, liq=LIQ, n_hold=N_HOLD, buffer=BUFFER, top_k=TOP_K,

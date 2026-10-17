@@ -7,6 +7,8 @@ from __future__ import annotations
 # --- 项目根入 sys.path：core / factor_zoo 都是根目录下的包 ---
 import os as _os, sys as _sys
 _sys.path.insert(0, _os.path.dirname(_os.path.dirname(_os.path.abspath(__file__))))
+# --- 产物归档到本工作的目录：out/02_回测系统/ ---
+_os.environ.setdefault("CLASS4_TRACK", "02_回测系统")
 
 
 import base64
@@ -19,10 +21,9 @@ import matplotlib
 matplotlib.use("Agg")
 import matplotlib.pyplot as plt
 
-from core.lib import ROOT, FIG, savefig
+from core.lib import ROOT, FIG, savefig, RUNS, OUT, TAB
 from core.factors import FACTORS, DESC
 
-RUNS = os.path.join(ROOT, "out", "runs")
 plt.rcParams["axes.grid"] = True
 plt.rcParams["grid.alpha"] = 0.25
 
@@ -45,7 +46,7 @@ def load_nav(tag):
 def main():
     ic = pd.read_csv(os.path.join(RUNS, "vv_ic.csv"), encoding="utf-8", index_col=0,
                      parse_dates=True)
-    S = pd.read_csv(os.path.join(ROOT, "out", "tables", "04_vol_strategy_summary.csv"),
+    S = pd.read_csv(os.path.join(TAB, "04_vol_strategy_summary.csv"),
                     encoding="utf-8-sig", index_col=0)
     bench = pd.read_csv(os.path.join(RUNS, "benchmark.csv"), index_col=0,
                         parse_dates=True).iloc[:, 0]
@@ -137,7 +138,7 @@ def main():
         "IC胜率": (ic[list(FACTORS)] > 0).mean().values,
     }, index=list(FACTORS))
 
-    sens = pd.read_csv(os.path.join(ROOT, "out", "tables", "05_sensitivity.csv"),
+    sens = pd.read_csv(os.path.join(TAB, "05_sensitivity.csv"),
                        encoding="utf-8-sig", index_col=0)
 
     css = """body{font-family:-apple-system,'Segoe UI','Microsoft YaHei',sans-serif;
@@ -189,7 +190,7 @@ def main():
               pct=("年化收益", "最大回撤")),
         imgs)
 
-    out = os.path.join(ROOT, "out", "vol_dashboard.html")
+    out = os.path.join(OUT, "vol_dashboard.html")
     with open(out, "w", encoding="utf-8") as fh:
         fh.write(html)
     print("已写出 %s（%.2f MB）" % (out, os.path.getsize(out) / 1e6))

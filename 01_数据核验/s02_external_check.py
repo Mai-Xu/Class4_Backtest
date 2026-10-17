@@ -37,14 +37,13 @@ if PROJ not in sys.path:
 import core.lib as _lib
 from core.lib import MarketData, FIELDS, savefig, savetab
 
-# 本目录的产物根：savefig/savetab 在**调用时**读取 lib 的模块级 FIG/TAB，
-# 所以这里改掉即可让图与表落到本目录的 out/ 下。
-_lib.FIG = os.path.join(HERE, "out", "figures")
-_lib.TAB = os.path.join(HERE, "out", "tables")
+# 产物根：与其它三项工作一致，统一落 out/01_数据核验/。
+# savefig/savetab 在**调用时**读取 lib 的模块级 FIG/TAB，所以这里改掉即可。
+ROOT = os.path.join(PROJ, "out", "01_数据核验")
+_lib.FIG = os.path.join(ROOT, "figures")
+_lib.TAB = os.path.join(ROOT, "tables")
 for _d in (_lib.FIG, _lib.TAB):
     os.makedirs(_d, exist_ok=True)
-
-ROOT = HERE                      # 报告输出根 = 本目录
 FIG, TAB = _lib.FIG, _lib.TAB
 
 import argparse
@@ -391,7 +390,7 @@ def main():
     w("> 外部源**多出**的交易日（`外部多出交易日` 列）说明本地矩阵按自己的交易日历构面，"
       "不是简单截断；这部分不在比对范围内。")
 
-    out = os.path.join(ROOT, "out", "external_check.md")
+    out = os.path.join(ROOT, "external_check.md")
     with open(out, "w", encoding="utf-8") as fh:
         fh.write("\n".join(L) + "\n")
     print("\n已写出：%s" % out)

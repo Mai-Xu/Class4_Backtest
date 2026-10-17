@@ -48,11 +48,24 @@ plt.rcParams["savefig.bbox"] = "tight"
 # 项目根目录 = 本文件所在目录（不写死本机路径）
 # 项目根 = core/ 的上一级（core/ 只放库代码，产物统一落在项目根的 out/ 下）
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
-FIG = os.path.join(ROOT, "out", "figures")
-TAB = os.path.join(ROOT, "out", "tables")
+
+#: 产物按「工作」分目录。脚本在 import core.lib **之前**设置
+#:     os.environ.setdefault("CLASS4_TRACK", "02_回测系统")
+#: 之后 FIG/TAB/RUNS 会自动落到 out/02_回测系统/{figures,tables,runs}。
+#: 不设置时退回老的 out/{figures,tables,runs}（兼容单独 import core.lib 的场景）。
+#: 因子面板缓存 **不随工作切换**：out/cache/ 由 s04/s05/s07/s08/s10 共享，避免重复计算。
+TRACK = os.environ.get("CLASS4_TRACK", "").strip()
+OUT = os.path.join(ROOT, "out", TRACK) if TRACK else os.path.join(ROOT, "out")
+FIG = os.path.join(OUT, "figures")
+TAB = os.path.join(OUT, "tables")
+RUNS = os.path.join(OUT, "runs")
 CACHE = os.path.join(ROOT, "out", "cache")
-for _d in (FIG, TAB, CACHE):
-    os.makedirs(_d, exist_ok=True)
+#: 只有设了 CLASS4_TRACK 才创建产物目录；单独 import core.lib（测试、体检）不该建空目录。
+#: 缓存目录始终存在（它是共享的、可再生的）。
+if TRACK:
+    for _d in (FIG, TAB, RUNS):
+        os.makedirs(_d, exist_ok=True)
+os.makedirs(CACHE, exist_ok=True)
 
 FIELDS = ("open", "high", "low", "close", "amt", "num_trades", "cumadj")
 ENV_VARS = ("CLASS4_DATA_DIR", "FEATHERS_DIR")
@@ -625,6 +638,7 @@ class MarketData:
 # --------------------------------------------------------------------------- #
 def savefig(fig, fname):
     p = os.path.join(FIG, fname)
+    os.makedirs(os.path.dirname(p), exist_ok=True)
     fig.savefig(p)
     plt.close(fig)
     return p
@@ -632,6 +646,7 @@ def savefig(fig, fname):
 
 def savetab(df, fname, index=True):
     p = os.path.join(TAB, fname)
+    os.makedirs(os.path.dirname(p), exist_ok=True)
     df.to_csv(p, index=index, encoding="utf-8-sig")
     return p
 

@@ -27,6 +27,8 @@ from __future__ import annotations
 # --- 项目根入 sys.path：core / factor_zoo 都是根目录下的包 ---
 import os as _os, sys as _sys
 _sys.path.insert(0, _os.path.dirname(_os.path.dirname(_os.path.abspath(__file__))))
+# --- 产物归档到本工作的目录：out/03_因子挖掘/ ---
+_os.environ.setdefault("CLASS4_TRACK", "03_因子挖掘")
 
 
 import argparse
@@ -42,16 +44,22 @@ import plotly.offline as po
 from scipy.cluster.hierarchy import linkage
 from scipy.spatial.distance import squareform
 
-from core.lib import MarketData, ROOT, CACHE, TAB, savetab
+from core.lib import MarketData, ROOT, CACHE, TAB, savetab, RUNS, OUT
 from core.engine import Backtest
 from core.strategies import PanelStrategy, build_factor_panels
 from core.factors import FACTORS, DESC
 from core import metrics
 
-RUNS = os.path.join(ROOT, "out", "runs")
 FUC = os.path.join(CACHE, "factors")
-OUT_HTML = os.path.join(ROOT, "out", "factor_lab.html")
-OUT_MD = os.path.join(ROOT, "out", "factor_lab_report.md")
+#: s07 复用「工作②」的回测产物（vv_* 以及 04_/05_ 表），不重复跑回测。
+#: 这是全项目唯一一处**跨工作读取**，所以路径显式指向 out/02_回测系统/，
+#: 不跟着本工作的产物目录（out/03_因子挖掘/）走。
+SRC = os.path.join(ROOT, "out", "02_回测系统")
+SRC_RUNS = os.path.join(SRC, "runs")
+SRC_TAB = os.path.join(SRC, "tables")
+
+OUT_HTML = os.path.join(OUT, "factor_lab.html")
+OUT_MD = os.path.join(OUT, "factor_lab_report.md")
 
 # 因子族：与 s04 报告里的口径一致
 VOL_FAMILY = ("ivol", "beta", "dvol", "maxdd", "skew", "kurt", "vol_trend", "vol_of_vol")
@@ -207,24 +215,24 @@ def sparkline(values, color="#38bdf8", w=132, h=30):
 # 二、读入 s04 / s05 的产物
 # --------------------------------------------------------------------------- #
 def load_artifacts() -> dict:
-    cfg = json.load(open(os.path.join(RUNS, "vv_config.json"), encoding="utf-8"))
+    cfg = json.load(open(os.path.join(SRC_RUNS, "vv_config.json"), encoding="utf-8"))
     art = {"cfg": cfg}
-    art["icstat"] = pd.read_csv(os.path.join(TAB, "04_factor_ic.csv"),
+    art["icstat"] = pd.read_csv(os.path.join(SRC_TAB, "04_factor_ic.csv"),
                                 encoding="utf-8", index_col=0)
-    ic = pd.read_csv(os.path.join(RUNS, "vv_ic.csv"), encoding="utf-8",
+    ic = pd.read_csv(os.path.join(SRC_RUNS, "vv_ic.csv"), encoding="utf-8",
                      index_col=0, parse_dates=True)
     art["ic"] = ic[list(FACTORS)]
-    art["single"] = pd.read_csv(os.path.join(TAB, "04_vol_strategy_summary.csv"),
+    art["single"] = pd.read_csv(os.path.join(SRC_TAB, "04_vol_strategy_summary.csv"),
                                 encoding="utf-8", index_col=0)
-    art["sens"] = pd.read_csv(os.path.join(TAB, "05_sensitivity.csv"),
+    art["sens"] = pd.read_csv(os.path.join(SRC_TAB, "05_sensitivity.csv"),
                               encoding="utf-8", index_col=0)
-    art["sub"] = pd.read_csv(os.path.join(TAB, "05_subperiod.csv"),
+    art["sub"] = pd.read_csv(os.path.join(SRC_TAB, "05_subperiod.csv"),
                              encoding="utf-8", index_col=0)
-    art["comp_daily"] = pd.read_csv(os.path.join(RUNS, "vv_comp", "daily.csv"),
+    art["comp_daily"] = pd.read_csv(os.path.join(SRC_RUNS, "vv_comp", "daily.csv"),
                                     encoding="utf-8", index_col=0, parse_dates=True)
     art["comp_nav"] = art["comp_daily"]["nav"]
     art["factor_nav"] = {
-        nm: pd.read_csv(os.path.join(RUNS, "vv_" + nm, "nav.csv"), encoding="utf-8",
+        nm: pd.read_csv(os.path.join(SRC_RUNS, "vv_" + nm, "nav.csv"), encoding="utf-8",
                         index_col=0, parse_dates=True)["nav"] for nm in FACTORS}
     return art
 

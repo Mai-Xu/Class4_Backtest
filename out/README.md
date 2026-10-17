@@ -1,31 +1,47 @@
 # out/ 产物索引
 
-本目录是所有脚本的输出根（**轨道 A 除外**，它自带 `../1_数据真实性验证/out/`）。
+**所有产物按工作分目录**，不再混在一起。每项工作只往 `out/<自己>/` 写，
+`out/` 根目录下只有 4 个工作目录 + 一个共享缓存。
 
-## 报告与看板（双击即开）
-
-| 文件 | 产出脚本 | 内容 |
+| 目录 | 属于 | 内容 |
 | --- | --- | --- |
-| `backtest_report.md` | `../2_回测系统/s03_report.py` | 主策略回测报告（复权/涨跌停/成本口径 + 对照实验） |
-| `dashboard.html` | 同上 | 主策略自包含看板 |
-| `vol_report.md` | `../2_回测系统/s04_vol_volume.py` + `s05_robustness.py` | 13 因子波动率+成交量策略 + 稳健性压测 |
-| `vol_dashboard.html` | `../2_回测系统/s06_report.py` | 同上，自包含看板 |
-| `factor_lab.html` | `../3_因子挖掘/s07_factor_lab.py` | 因子挖掘实验室（交互式 Plotly 看板） |
-| `factor_lab_report.md` | 同上 | 实验室文字小结 |
-| `mining_report.md` | `../3_因子挖掘/s08_factor_mining.py` + `s09_mining_report.py` | **70 因子全市场挖掘**：IC 筛选 / 去冗余 / 合成 / 规模敏感性 / 中性化鉴定 |
-| `multifactor_report.md` | `../3_因子挖掘/s10_multifactor.py` | **多因子策略**：家族 ICIR 打分 + 风险预算仓位模型 + 执行层诊断 + 完整稳健性 |
+| `01_数据核验/` | 工作① | `data_audit.md`、`external_check.md`、`figures/01_*`、`tables/01_*`、`tables/02_external_*` |
+| `02_回测系统/` | 工作② | `backtest_report.md`、`vol_report.md`、`dashboard.html`、`vol_dashboard.html`、`figures/03~05_*`、`tables/02~05_*`、`runs/` |
+| `03_因子挖掘/` | 工作③ | `factor_lab.html`、`factor_lab_report.md`、`mining_report.md`、`figures/06_*`、`tables/07~08_*`、`runs/zoo_*` |
+| `04_多因子策略/` | 工作④ | `multifactor_report.md`、`figures/10_*`、`tables/10_*`、`runs/MF5_*`、`runs/MF6_*` |
+| `cache/` | 共享 | 因子面板 parquet 缓存，带 mtime 指纹自动失效。**4 项工作共用**，不按工作分。 |
 
-## 子目录
+## 每个工作目录里的固定结构
 
-| 目录 | 说明 | 是否入库 |
-| --- | --- | --- |
-| `figures/` | 全部图（编号与脚本对应：`03_*`=回测系统，`04_*`/`05_*`=波动率策略与稳健性，`06_*`=因子挖掘，`10_*`=多因子策略） | 是 |
-| `tables/` | 全部表（`02_*`~`10_*` 与脚本编号对应） | 是 |
-| `runs/` | 每个组合的回测明细（nav / daily / trades / blocks / holdings），共 30+ 组 | **否**（可再生，已 gitignore） |
-| `cache/` | 因子面板 parquet 缓存，带 mtime 指纹自动失效 | **否**（可再生，已 gitignore） |
+```
+out/<工作名>/
+├── figures/     图（编号与脚本编号对应：03_* ← s03，10_* ← s10）
+├── tables/      表
+└── runs/        回测明细（每个组合一个子目录：nav / daily / trades / blocks / holdings）
+```
 
-> 核验产物不在这里：`../核验报告.md`、`../3_因子挖掘/audit/`、`../1_数据真实性验证/audit/`。
-> 核验用的 `naive_*.py` 会逐格重跑因子，耗时 30 秒~4 分钟不等。
+## 哪些进版本库
 
-> `runs/` 与 `cache/` 合计约 770 MB，都是可再生的中间产物，
-> 已经写进 `.gitignore`；删掉后重跑对应脚本即可重建。
+| 内容 | 是否入库 |
+| --- | --- |
+| 报告（`.md`）、看板（`.html`）、`figures/`、`tables/` | **是** |
+| `runs/`（回测明细，共 50+ 组，体积大且可重跑） | 否（`.gitignore`：`out/*/runs/`） |
+| `cache/`（因子面板 parquet，可重算） | 否（`out/cache/`） |
+| `*.log`（运行日志） | 否（`out/*/*.log`） |
+
+> 删掉 `runs/` 与 `cache/` 后重跑对应脚本即可重建；`cache/` 只影响速度，不影响结果。
+
+## 产物怎么路由的
+
+`core/lib.py` 在 **import 时**读环境变量 `CLASS4_TRACK`：
+
+```python
+os.environ.setdefault("CLASS4_TRACK", "04_多因子策略")   # 必须在 import core.lib 之前
+from core.lib import OUT, FIG, TAB, RUNS                  # → out/04_多因子策略/{figures,tables,runs}
+```
+
+每个脚本开头都有一行这样的 `setdefault`，所以脚本从任意 cwd 运行、产物都归到自己的工作目录。
+`savefig` / `savetab` 在**调用时**读模块级 `FIG` / `TAB`，目录不存在会自动创建。
+
+唯一的跨工作读取：`03_因子挖掘/s07_factor_lab.py` 复用工作②的 `vv_*` 回测明细与 `04_/05_` 表，
+所以它显式指向 `out/02_回测系统/`（源码里叫 `SRC_RUNS` / `SRC_TAB`）。

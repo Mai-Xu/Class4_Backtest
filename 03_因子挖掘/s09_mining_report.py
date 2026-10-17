@@ -7,6 +7,8 @@ from __future__ import annotations
 # --- 项目根入 sys.path：core / factor_zoo 都是根目录下的包 ---
 import os as _os, sys as _sys
 _sys.path.insert(0, _os.path.dirname(_os.path.dirname(_os.path.abspath(__file__))))
+# --- 产物归档到本工作的目录：out/03_因子挖掘/ ---
+_os.environ.setdefault("CLASS4_TRACK", "03_因子挖掘")
 
 
 import os
@@ -17,9 +19,8 @@ import matplotlib
 matplotlib.use("Agg")
 import matplotlib.pyplot as plt
 
-from core.lib import MarketData, ROOT, FIG, savetab, savefig
+from core.lib import MarketData, ROOT, FIG, savetab, savefig, RUNS, OUT, TAB
 
-RUNS = os.path.join(ROOT, "out", "runs")
 plt.rcParams["axes.grid"] = True
 plt.rcParams["grid.alpha"] = 0.25
 TAGS = {"zoo_ns": ("规模中性化 38 因子", "#d94801"),
@@ -76,7 +77,7 @@ def main():
     savefig(fig, "06_mining.png")
 
     # 规模敏感性
-    p = os.path.join(ROOT, "out", "tables", "08_scale_sensitivity.csv")
+    p = os.path.join(TAB, "08_scale_sensitivity.csv")
     sens = pd.read_csv(p, encoding="utf-8-sig") if os.path.exists(p) else None
 
     L = []
@@ -121,7 +122,7 @@ def main():
     L.append("|---|---|---|---|---|---|---|---|---|")
     for tag, lab in [("zoo_icw", "IC 加权 38 因子"), ("zoo_eq", "等权 38 因子"),
                      ("zoo_ns", "**规模中性化 38 因子**"), ("zoo_lq_amt_log20", "纯规模因子")]:
-        S = pd.read_csv(os.path.join(ROOT, "out", "tables", "08_mining_summary.csv"),
+        S = pd.read_csv(os.path.join(TAB, "08_mining_summary.csv"),
                         encoding="utf-8-sig", index_col=0)
         if tag in S.index:
             r = S.loc[tag]
@@ -154,7 +155,7 @@ def main():
     L.append("```")
     L.append("")
 
-    out = os.path.join(ROOT, "out", "mining_report.md")
+    out = os.path.join(OUT, "mining_report.md")
     with open(out, "a", encoding="utf-8") as fh:
         fh.write("\n".join(L) + "\n")
     print("已追加 %s" % out)

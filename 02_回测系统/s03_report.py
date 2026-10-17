@@ -7,6 +7,8 @@ from __future__ import annotations
 # --- 项目根入 sys.path：core / factor_zoo 都是根目录下的包 ---
 import os as _os, sys as _sys
 _sys.path.insert(0, _os.path.dirname(_os.path.dirname(_os.path.abspath(__file__))))
+# --- 产物归档到本工作的目录：out/02_回测系统/ ---
+_os.environ.setdefault("CLASS4_TRACK", "02_回测系统")
 
 
 import base64
@@ -20,13 +22,12 @@ import matplotlib
 matplotlib.use("Agg")
 import matplotlib.pyplot as plt
 
-from core.lib import ROOT, FIG, TAB, savefig, savetab
+from core.lib import ROOT, FIG, TAB, savefig, savetab, RUNS, OUT
 from core.metrics import perf_stats, perf_table, excess_stats, annual_table, drawdown
 
 plt.rcParams["axes.grid"] = True
 plt.rcParams["grid.alpha"] = 0.25
 
-RUNS = os.path.join(ROOT, "out", "runs")
 MAIN = ["低流动性20", "低波60", "反转5", "动量20_跳5", "动量20"]
 LABEL = {"低流动性20": "低流动性20", "低波60": "低波60", "反转5": "反转5",
          "动量20_跳5": "动量20(跳5)", "动量20": "动量20"}
@@ -472,11 +473,11 @@ def main():
 %s
 <p style="color:#888;font-size:12px">本页自包含（图片内嵌 base64），双击即可打开。</p>
 </body></html>""" % (css, meta["start"], meta["end"], kpi, sm_tbl, sens_tbl, blk_tbl, imgs)
-    out_html = os.path.join(ROOT, "out", "dashboard.html")
+    out_html = os.path.join(OUT, "dashboard.html")
     with open(out_html, "w", encoding="utf-8") as fh:
         fh.write(html)
 
-    out_md = os.path.join(ROOT, "out", "backtest_report.md")
+    out_md = os.path.join(OUT, "backtest_report.md")
     with open(out_md, "w", encoding="utf-8") as fh:
         fh.write("\n".join(L) + "\n")
     print("\n已写出：%s" % out_md)
