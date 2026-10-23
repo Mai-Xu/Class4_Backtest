@@ -19,3 +19,8 @@ out/*/*.log
 # --- 系统文件 ---
 .DS_Store
 Thumbs.db
+
+# --- 05 MTUM 工作目录及相关资料（不上传）---
+05_MTUM_A股/
+out/05_MTUM_A股/
+*shares-edge-msci-usa-momentum-factor-etf*.pdf
