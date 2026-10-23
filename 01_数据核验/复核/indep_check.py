@@ -26,7 +26,25 @@ import pandas as pd
 HERE = os.path.dirname(os.path.abspath(__file__))     # .../1_数据真实性验证/audit
 ATRACK = os.path.dirname(HERE)                         # .../1_数据真实性验证
 ROOT = os.path.dirname(ATRACK)                         # 项目根
-DATA = os.path.join(ROOT, "feathers")
+
+
+def _resolve_data() -> str:
+    """数据目录：与主代码同一优先级（环境变量 → 项目根 feathers/ → 当前目录）。
+
+    本脚本刻意不 import core.lib（独立核验），但数据定位规则保持一致，
+    这样换机器 / 数据放别处时同样能跑。
+    """
+    for var in ("CLASS4_DATA_DIR", "FEATHERS_DIR"):
+        p = os.environ.get(var)
+        if p and os.path.isfile(os.path.join(p, "close.feather")):
+            return os.path.abspath(os.path.expanduser(p))
+    for cand in (os.path.join(ROOT, "feathers"), os.getcwd()):
+        if os.path.isfile(os.path.join(cand, "close.feather")):
+            return os.path.abspath(cand)
+    return os.path.join(ROOT, "feathers")
+
+
+DATA = _resolve_data()
 OUTJSON = os.path.join(HERE, "indep_check_results.json")
 OUTCSV = os.path.join(HERE, "indep_em_check.csv")
 OUTCSVEV = os.path.join(HERE, "indep_em_events.csv")
