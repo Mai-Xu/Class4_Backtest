@@ -20,7 +20,7 @@ if PROJ not in sys.path:
     sys.path.insert(0, PROJ)
 
 import core.lib as _lib
-from core.lib import MarketData, FIELDS, savefig, savetab
+from core.lib import MarketData, FIELDS, savefig, savetab, portable_path
 
 # 产物根：与其它三项工作一致，统一落 out/01_数据核验/。
 # savefig/savetab 在**调用时**读取 lib 的模块级 FIG/TAB，所以这里改掉即可。
@@ -81,7 +81,7 @@ def table(df, floatfmt="%.4f"):
 # =========================================================================== #
 w("# Class4 回测 · 数据审计报告")
 w()
-w("数据目录：`%s`" % MD.dir)
+w("数据目录：`%s`" % portable_path(MD.dir))
 w()
 w("本报告由 `python s01_audit.py` 自动生成，**所有数字均为实测**，"
   "是后续所有回测的口径依据。")

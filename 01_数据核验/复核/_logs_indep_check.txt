@@ -1,19 +1,19 @@
-D:\PythonSoftware\Lib\site-packages\pandas\io\feather_format.py:124: FutureWarning: pyarrow.feather.read_feather is deprecated as of 24.0.0. Use pyarrow.ipc.open_file() / RecordBatchFileReader instead. Feather V2 is the Arrow IPC file format.
+<python>/Lib/site-packages/pandas\io\feather_format.py:124: FutureWarning: pyarrow.feather.read_feather is deprecated as of 24.0.0. Use pyarrow.ipc.open_file() / RecordBatchFileReader instead. Feather V2 is the Arrow IPC file format.
   return feather.read_feather(
-D:\PythonSoftware\Lib\site-packages\pandas\io\feather_format.py:124: FutureWarning: pyarrow.feather.read_feather is deprecated as of 24.0.0. Use pyarrow.ipc.open_file() / RecordBatchFileReader instead. Feather V2 is the Arrow IPC file format.
+<python>/Lib/site-packages/pandas\io\feather_format.py:124: FutureWarning: pyarrow.feather.read_feather is deprecated as of 24.0.0. Use pyarrow.ipc.open_file() / RecordBatchFileReader instead. Feather V2 is the Arrow IPC file format.
   return feather.read_feather(
-D:\PythonSoftware\Lib\site-packages\pandas\io\feather_format.py:124: FutureWarning: pyarrow.feather.read_feather is deprecated as of 24.0.0. Use pyarrow.ipc.open_file() / RecordBatchFileReader instead. Feather V2 is the Arrow IPC file format.
+<python>/Lib/site-packages/pandas\io\feather_format.py:124: FutureWarning: pyarrow.feather.read_feather is deprecated as of 24.0.0. Use pyarrow.ipc.open_file() / RecordBatchFileReader instead. Feather V2 is the Arrow IPC file format.
   return feather.read_feather(
-D:\PythonSoftware\Lib\site-packages\pandas\io\feather_format.py:124: FutureWarning: pyarrow.feather.read_feather is deprecated as of 24.0.0. Use pyarrow.ipc.open_file() / RecordBatchFileReader instead. Feather V2 is the Arrow IPC file format.
+<python>/Lib/site-packages/pandas\io\feather_format.py:124: FutureWarning: pyarrow.feather.read_feather is deprecated as of 24.0.0. Use pyarrow.ipc.open_file() / RecordBatchFileReader instead. Feather V2 is the Arrow IPC file format.
   return feather.read_feather(
-D:\PythonSoftware\Lib\site-packages\pandas\io\feather_format.py:124: FutureWarning: pyarrow.feather.read_feather is deprecated as of 24.0.0. Use pyarrow.ipc.open_file() / RecordBatchFileReader instead. Feather V2 is the Arrow IPC file format.
+<python>/Lib/site-packages/pandas\io\feather_format.py:124: FutureWarning: pyarrow.feather.read_feather is deprecated as of 24.0.0. Use pyarrow.ipc.open_file() / RecordBatchFileReader instead. Feather V2 is the Arrow IPC file format.
   return feather.read_feather(
-D:\PythonSoftware\Lib\site-packages\pandas\io\feather_format.py:124: FutureWarning: pyarrow.feather.read_feather is deprecated as of 24.0.0. Use pyarrow.ipc.open_file() / RecordBatchFileReader instead. Feather V2 is the Arrow IPC file format.
+<python>/Lib/site-packages/pandas\io\feather_format.py:124: FutureWarning: pyarrow.feather.read_feather is deprecated as of 24.0.0. Use pyarrow.ipc.open_file() / RecordBatchFileReader instead. Feather V2 is the Arrow IPC file format.
   return feather.read_feather(
-D:\PythonSoftware\Lib\site-packages\pandas\io\feather_format.py:124: FutureWarning: pyarrow.feather.read_feather is deprecated as of 24.0.0. Use pyarrow.ipc.open_file() / RecordBatchFileReader instead. Feather V2 is the Arrow IPC file format.
+<python>/Lib/site-packages/pandas\io\feather_format.py:124: FutureWarning: pyarrow.feather.read_feather is deprecated as of 24.0.0. Use pyarrow.ipc.open_file() / RecordBatchFileReader instead. Feather V2 is the Arrow IPC file format.
   return feather.read_feather(
 ====================================================================================================
-A-track independent check  |  data dir: F:\004大学学业资料\大二下-大三下\量化交易\Class4_回测\feathers
+A-track independent check  |  data dir: feathers
 started: 2026-10-16T23:30:47
 ====================================================================================================
 
@@ -132,5 +132,5 @@ event-day external re-check:
   600145.SH 2020-06-30 raw local +44.92% = EM +0.00% (CHECK) | local adj -4.91% vs EM qfq +0.00% | factor_rel=0.656140
   600766.SH 2024-06-05 raw local -96.44% = EM -96.44% (MATCH) | local adj -96.44% vs EM qfq -96.44% | factor_rel=1.000000
 
-JSON 写出：F:\004大学学业资料\大二下-大三下\量化交易\Class4_回测\1_数据真实性验证\audit\indep_check_results.json
-CSV  写出：F:\004大学学业资料\大二下-大三下\量化交易\Class4_回测\1_数据真实性验证\audit\indep_em_check.csv
+JSON 写出：1_数据真实性验证\audit\indep_check_results.json
+CSV  写出：1_数据真实性验证\audit\indep_em_check.csv

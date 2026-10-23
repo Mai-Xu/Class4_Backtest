@@ -3,9 +3,9 @@ __pycache__/
 *.py[cod]
 .ipynb_checkpoints/
 
-# --- 原始行情数据（226 MB，沿用 Class3 约定：仓库不含原始数据）---
-# 如果确实要把数据一起入库，删掉下面这行即可
-feathers/
+# --- 原始行情数据（约 226 MB，不入库；feathers/README.md 说明从哪来、放哪里）---
+feathers/*
+!feathers/README.md
 
 # --- 可再生的中间产物（不要入库）---
 out/cache/

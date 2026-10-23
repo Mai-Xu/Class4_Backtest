@@ -35,7 +35,7 @@ if PROJ not in sys.path:
     sys.path.insert(0, PROJ)
 
 import core.lib as _lib
-from core.lib import MarketData, FIELDS, savefig, savetab
+from core.lib import MarketData, FIELDS, savefig, savetab, portable_path
 
 # 产物根：与其它三项工作一致，统一落 out/01_数据核验/。
 # savefig/savetab 在**调用时**读取 lib 的模块级 FIG/TAB，所以这里改掉即可。
@@ -185,7 +185,7 @@ def main():
 
     w("# Class4 回测 · 外部真值比对报告")
     w()
-    w("本地数据：`%s`" % md.dir)
+    w("本地数据：`%s`" % portable_path(md.dir))
     w("外部来源：腾讯行情日线接口（`web.ifzq.gtimg.cn`，日线，不复权 / 前复权）")
     w("样本：%d 只证券（覆盖沪深主板、创业板、科创板）" % len(syms))
     w()

@@ -4,7 +4,7 @@
   "python": "3.13.11 (tags/v3.13.11:6278944, Dec  5 2025, 16:26:58) [MSC v.1944 64 bit (AMD64)]",
   "pandas": "2.2.3",
   "numpy": "2.2.0",
-  "data_dir": "F:\\004大学学业资料\\大二下-大三下\\量化交易\\Class4_回测\\feathers",
+  "data_dir": "feathers",
   "when": "2026-10-16T23:30:48"
  },
  "A": {

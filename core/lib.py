@@ -116,6 +116,30 @@ def resolve_dir(argv=None, start=None) -> str:
         "或把 feathers/ 放在本项目目录下。")
 
 
+def portable_path(path) -> str:
+    """把目录/文件路径转成可移植写法，写报告/日志时用。
+
+    - 在项目根内 → 相对路径（如 ``feathers``）
+    - 在项目根外 → ``<外部数据目录>/<目录名>``
+
+    这样交付物里不会出现本机盘符绝对路径。
+    """
+    try:
+        p = os.path.abspath(os.path.expanduser(str(path)))
+    except Exception:                                     # noqa: BLE001
+        return str(path)
+    try:
+        rel = os.path.relpath(p, ROOT)
+    except ValueError:                                    # Windows 跨盘符
+        return "<外部数据目录>/" + os.path.basename(p)
+    if rel == ".":
+        return "."
+    if rel.startswith(".."):
+        return "<外部数据目录>/" + os.path.basename(p)
+    return rel.replace("\\", "/")
+
+
+
 def _read_feather(path: str) -> pd.DataFrame:
     """Feather V2 即 Arrow IPC 文件格式；pyarrow>=24 已弃用 feather.read_table。"""
     try:
