@@ -17,10 +17,24 @@ import importlib
 
 import numpy as np
 
-CATEGORIES = ("mom_rev", "risk", "liquidity", "flow", "trend")
+#: 因子模块加载顺序。新增模块只要加到这里即可被主线自动纳入（缺失的模块自动跳过）。
+CATEGORIES = ("mom_rev", "reversal", "marketrel",
+              "risk", "risk2",
+              "liquidity", "liquidity2",
+              "flow", "flow2", "chip",
+              "trend", "trend2", "pattern",
+              "calendar", "interaction")
 
-FAMILY = {"mom_rev": "动量与反转", "risk": "波动率与风险", "liquidity": "流动性与交易活跃度",
-          "flow": "量价关系与资金流", "trend": "趋势与形态"}
+#: 模块 -> 家族（下游合成按家族聚合；同一家族的多个模块会被合并成一族）
+FAMILY = {
+    "mom_rev": "动量与反转", "reversal": "动量与反转", "marketrel": "动量与反转",
+    "risk": "波动率与风险", "risk2": "波动率与风险",
+    "liquidity": "流动性与交易活跃度", "liquidity2": "流动性与交易活跃度",
+    "flow": "量价关系与资金流", "flow2": "量价关系与资金流", "chip": "量价关系与资金流",
+    "trend": "趋势与形态", "trend2": "趋势与形态", "pattern": "趋势与形态",
+    "calendar": "日历与季节性",
+    "interaction": "交互与合成",
+}
 
 
 def load_all(strict: bool = False) -> dict:

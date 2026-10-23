@@ -1,0 +1,213 @@
+{
+ "1_timing": {
+  "first_trade_date": "2025-01-02",
+  "last_trade_date": "2026-09-30",
+  "first_ok": true,
+  "last_ok": true,
+  "n_trades": 30124,
+  "n_buy": 15322,
+  "n_sell": 14802,
+  "n_trade_days": 101,
+  "first_day_n": 1698,
+  "first_day_sides": [
+   "buy"
+  ],
+  "last_day_n": 1699,
+  "last_day_sides": [
+   "sell"
+  ],
+  "final_n_holdings": 12.0,
+  "final_holdings_rows": 12,
+  "final_resid_value_valid": 1625500.45166238,
+  "final_resid_nan_rows": 8,
+  "final_resid_symbols": [
+   "000004.SZ",
+   "000016.SZ",
+   "000584.SZ",
+   "002336.SZ",
+   "002485.SZ",
+   "600421.SH",
+   "600837.SH",
+   "600965.SH",
+   "601059.SH",
+   "603056.SH",
+   "605081.SH",
+   "688287.SH"
+  ],
+  "final_nav": 1405787741.2973433,
+  "final_cash": 1404162240.845681,
+  "final_resid_weight": 0.0011562915253210794,
+  "final_blocks": [
+   {
+    "side": "sell",
+    "reason": "suspended",
+    "size": 2,
+    "sum": 1532118.0540208216
+   }
+  ]
+ },
+ "2_cost": {
+  "max_abs_diff": 3.410605131648481e-13,
+  "max_rel_diff": 4.752389744512461e-16,
+  "mean_abs_diff": 2.6270550968668477e-14,
+  "worst": {
+   "date": "2026-06-01",
+   "symbol": "300212.SZ",
+   "side": "sell",
+   "dv": 1392687.6351409743,
+   "fee_actual": 835.6125810845848,
+   "fee_expect": 835.6125810845845
+  },
+  "total_fee": 7653989.6062926855,
+  "total_fee_wan": 765.3989606292686,
+  "commission": 2157438.7281942,
+  "stamp": 5496550.878098485,
+  "report_fee_wan": 765.3989606292686,
+  "report_diff_yuan": 0.0,
+  "total_dv": 21574387281.941998,
+  "buy_dv": 10581285525.745028,
+  "sell_dv": 10993101756.196972
+ },
+ "3_perf": {
+  "n": 425,
+  "start": "2024-12-31",
+  "end": "2026-09-30",
+  "nav0": 1000000000.0,
+  "nav_end": 1405787741.2973433,
+  "years": 1.6865079365079365,
+  "years_cal": 1.7467488021902806,
+  "total": 0.4057877412973432,
+  "cagr": 0.22379228697289433,
+  "cagr_live": 0.24041468112169384,
+  "cagr_calendar": 0.21529832324271458,
+  "vol": 0.18581259188659716,
+  "sharpe": 1.2043978543148275,
+  "mdd": -0.1729828598674673,
+  "calmar": 1.293725211528791,
+  "winrate": 0.5764705882352941,
+  "mdd_peak": "2026-02-27",
+  "mdd_trough": "2026-06-26",
+  "summary": {
+   "total": 0.4057877412973432,
+   "cagr": 0.2237922869728943,
+   "vol": 0.185812591886597,
+   "sharpe": 1.2043978543148284,
+   "mdd": -0.1729828598674673,
+   "calmar": 1.293725211528791,
+   "winrate": 0.5764705882352941
+  },
+  "diff": {
+   "total": 0.0,
+   "cagr": -2.7755575615628914e-17,
+   "vol": -1.6653345369377348e-16,
+   "sharpe": 8.881784197001252e-16,
+   "mdd": 0.0,
+   "calmar": 0.0,
+   "winrate": 0.0
+  }
+ },
+ "4_turnover": {
+  "total_dv": 21574387281.941998,
+  "sum_daily_turnover": 17.118926123184675,
+  "years": 1.6865079365079365,
+  "turnover_daily_sum": 10.150516195394207,
+  "turnover_nav0": 12.792342576586785,
+  "turnover_avg_nav": 10.115664138412884,
+  "summary_turnover": 10.150516195394207,
+  "diff_daily_sum": 0.0,
+  "diff_nav0": -2.641826381192578,
+  "max_abs_diff_daily": 2.7422508708241367e-14,
+  "max_rel_diff_daily": 8.638486729308749e-13
+ },
+ "5_holdings": {
+  "max_abs_cash_diff": 0.00014972686767578125,
+  "max_rel_cash_diff": 1.5927980518843753e-12,
+  "cash_worst_date": "2026-03-03",
+  "max_abs_nholdings_diff": 0.0,
+  "nholdings_mismatch_days": 0,
+  "negative_cells": 0,
+  "max_abs_value_diff": 9.313225746154785e-10,
+  "value_cells": 720634,
+  "value_cells_gt1yuan": 0,
+  "max_abs_nav_identity": 4.76837158203125e-07
+ },
+ "6_sanity": {
+  "sample_days": [
+   "2025-10-13",
+   "2025-04-01",
+   "2025-03-07"
+  ],
+  "bad_buys": 0,
+  "bad_sells": 0,
+  "bad_buy_head": [],
+  "bad_sell_head": [],
+  "max_participation": 0.1,
+  "p99": 0.043645491240112355,
+  "median": 0.006643191833316003,
+  "n_over_10pct": 0,
+  "n_over_10pct_1e6": 0,
+  "sample_detail": [
+   {
+    "date": "2025-10-13",
+    "n": 1,
+    "n_buy": 1,
+    "n_sell": 0,
+    "max_part": 0.1,
+    "n_buy_olu": 0,
+    "n_sell_old": 0,
+    "n_sus": 0
+   },
+   {
+    "date": "2025-04-01",
+    "n": 1514,
+    "n_buy": 759,
+    "n_sell": 755,
+    "max_part": 0.1,
+    "n_buy_olu": 0,
+    "n_sell_old": 0,
+    "n_sus": 0
+   },
+   {
+    "date": "2025-03-07",
+    "n": 3,
+    "n_buy": 0,
+    "n_sell": 3,
+    "max_part": 0.028687781626168387,
+    "n_buy_olu": 0,
+    "n_sell_old": 0,
+    "n_sus": 0
+   }
+  ]
+ },
+ "7_bench_extra": {
+  "bench_first": 0.9751412582389732,
+  "bench_first_date": "2024-12-31",
+  "bench_2025_0102": 0.9570862898400774,
+  "bench_last": 1.331418624082022,
+  "bench_independent_max_diff": 2.220446049250313e-16,
+  "bench_cagr": 0.2028004228289042,
+  "bench_cum": 0.3653597495058891,
+  "summary_bench_cum": 0.3653597495058893,
+  "summary_bench_cagr": 0.2028004228289042,
+  "summary_bench_vol": 0.2253276720567286,
+  "summary_bench_sharpe": 0.9000244886826286,
+  "te": 0.08497871356722789,
+  "excess_engine": 0.020991864143990124,
+  "ir_engine": 0.2470249696988312,
+  "summary_excess": 0.0388116290119482,
+  "summary_te": 0.0871017301515305,
+  "summary_ir": 0.4455896449407814,
+  "cagr_live": 0.24041468112169384,
+  "bench_cagr_live": 0.2167647731297624,
+  "excess_rebase": 0.02364990799193145,
+  "te_live": 0.08504357109969381,
+  "ir_rebase": 0.2780916615579023,
+  "avg_n_holdings": 1698.9882352941177,
+  "report_avg_n": 1698.9882352941177,
+  "avg_position": 0.9307003965988931,
+  "report_avg_position": 0.9307003965988933,
+  "blocks_total_wan": 24851.838653860756,
+  "report_blocks_wan": 24851.838653860752,
+  "first_day_dv": 978616221.8352942
+ }
+}

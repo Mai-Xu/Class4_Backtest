@@ -1,0 +1,58 @@
+月频网格 69 个日期（2021-01-29 ~ 2026-09-30）
+复现 s20 的 12 个抽样日（grid[::5][:12]）：2021-01-29, 2021-06-30, 2021-11-30, 2022-04-29, 2022-09-30, 2023-02-28, 2023-07-31, 2023-12-29, 2024-05-31, 2024-10-31, 2025-03-31, 2025-08-29
+2025-2026 月频调仓日 21 个：2025-01-27 ~ 2026-09-30
+reversal     rev_ret1                   panel  | cov12=0.8897 vs csv 0.8897 (Δ+0.00e+00) | cov25全市场=0.9489 池内=1.0000 | sd≤0 日数 全 0/池内 0 | min_sd=0.023
+reversal     rev_ret20g                 panel  | cov12=0.8873 vs csv 0.8873 (Δ+0.00e+00) | cov25全市场=0.9484 池内=1.0000 | sd≤0 日数 全 0/池内 0 | min_sd=0.00495
+reversal     rev_amtmom20               panel  | cov12=0.8853 vs csv 0.8853 (Δ+0.00e+00) | cov25全市场=0.9466 池内=0.9991 | sd≤0 日数 全 0/池内 0 | min_sd=0.00815
+reversal     rev_intra20                panel  | cov12=0.8874 vs csv 0.8874 (Δ+0.00e+00) | cov25全市场=0.9484 池内=1.0000 | sd≤0 日数 全 0/池内 0 | min_sd=0.00499
+reversal     rev_high5_60               panel  | cov12=0.8824 vs csv 0.8824 (Δ+0.00e+00) | cov25全市场=0.9467 池内=1.0000 | sd≤0 日数 全 0/池内 0 | min_sd=0.0668
+risk2        rk2_beta250                panel  | cov12=0.8601 vs csv 0.8601 (Δ+0.00e+00) | cov25全市场=0.9413 池内=1.0000 | sd≤0 日数 全 0/池内 0 | min_sd=0.325
+risk2        rk2_ivol120                panel  | cov12=0.8764 vs csv 0.8764 (Δ+0.00e+00) | cov25全市场=0.9454 池内=1.0000 | sd≤0 日数 全 0/池内 0 | min_sd=0.147
+risk2        rk2_semidn120              panel  | cov12=0.8764 vs csv 0.8764 (Δ+0.00e+00) | cov25全市场=0.9454 池内=1.0000 | sd≤0 日数 全 0/池内 0 | min_sd=0.0498
+risk2        rk2_tailratio60            panel  | cov12=0.7434 vs csv 0.7434 (Δ+0.00e+00) | cov25全市场=0.8296 池内=0.8834 | sd≤0 日数 全 0/池内 0 | min_sd=25.6
+risk2        rk2_jump60                 panel  | cov12=0.8825 vs csv 0.8825 (Δ+0.00e+00) | cov25全市场=0.9472 池内=1.0000 | sd≤0 日数 全 0/池内 0 | min_sd=0.125
+liquidity2   lq2_logamt250              panel  | cov12=0.8590 vs csv 0.8590 (Δ+0.00e+00) | cov25全市场=0.9407 池内=1.0000 | sd≤0 日数 全 0/池内 0 | min_sd=0.959
+liquidity2   lq2_amt_cv60               panel  | cov12=0.8818 vs csv 0.8818 (Δ+0.00e+00) | cov25全市场=0.9464 池内=0.9999 | sd≤0 日数 全 0/池内 0 | min_sd=0.194
+liquidity2   lq2_amivest60              panel  | cov12=0.8814 vs csv 0.8814 (Δ+0.00e+00) | cov25全市场=0.9462 池内=0.9999 | sd≤0 日数 全 0/池内 0 | min_sd=1.06
+liquidity2   lq2_tradesize60            panel  | cov12=0.8818 vs csv 0.8818 (Δ+0.00e+00) | cov25全市场=0.9464 池内=0.9999 | sd≤0 日数 全 0/池内 0 | min_sd=6.52e+03
+liquidity2   lq2_still_days250          panel  | cov12=0.8604 vs csv 0.8604 (Δ+0.00e+00) | cov25全市场=0.9413 池内=1.0000 | sd≤0 日数 全 0/池内 0 | min_sd=0.0101
+flow2        fl2_amtmom10               direct | cov12=0.8865 vs csv nan (Δ+nan) | cov25全市场=0.9467 池内=0.9993 | sd≤0 日数 全 0/池内 0 | min_sd=0.0107
+flow2        fl2_sign_amt_ratio20       direct | cov12=0.8853 vs csv nan (Δ+nan) | cov25全市场=0.9466 池内=0.9991 | sd≤0 日数 全 0/池内 0 | min_sd=0.0984
+flow2        fl2_force13                direct | cov12=0.8857 vs csv nan (Δ+nan) | cov25全市场=0.9464 池内=0.9990 | sd≤0 日数 全 0/池内 0 | min_sd=3.43
+flow2        fl2_pvt_slope60            direct | cov12=0.8816 vs csv nan (Δ+nan) | cov25全市场=0.9463 池内=0.9999 | sd≤0 日数 全 0/池内 0 | min_sd=0.00576
+flow2        fl2_emv20                  direct | cov12=0.8852 vs csv nan (Δ+nan) | cov25全市场=0.9464 池内=0.9990 | sd≤0 日数 全 0/池内 0 | min_sd=0.7
+chip         ch_profit120               panel  | cov12=0.8750 vs csv 0.8750 (Δ+0.00e+00) | cov25全市场=0.9443 池内=1.0000 | sd≤0 日数 全 0/池内 0 | min_sd=0.202
+chip         ch_conc120                 panel  | cov12=0.8750 vs csv 0.8750 (Δ+0.00e+00) | cov25全市场=0.9443 池内=1.0000 | sd≤0 日数 全 0/池内 0 | min_sd=0.0337
+chip         ch_skew60                  panel  | cov12=0.8817 vs csv 0.8817 (Δ+0.00e+00) | cov25全市场=0.9463 池内=0.9999 | sd≤0 日数 全 0/池内 0 | min_sd=0.434
+chip         ch_support_dist60          panel  | cov12=0.8069 vs csv 0.8069 (Δ+0.00e+00) | cov25全市场=0.8956 池内=0.9479 | sd≤0 日数 全 0/池内 0 | min_sd=0.0218
+chip         ch_cost_dev250d            panel  | cov12=0.8570 vs csv 0.8570 (Δ+0.00e+00) | cov25全市场=0.9392 池内=1.0000 | sd≤0 日数 全 0/池内 0 | min_sd=0.0992
+trend2       tr2_madev5                 panel  | cov12=0.8895 vs csv 0.8895 (Δ+0.00e+00) | cov25全市场=0.9489 池内=1.0000 | sd≤0 日数 全 0/池内 0 | min_sd=0.0248
+trend2       tr2_aroon_up25             panel  | cov12=0.8869 vs csv 0.8869 (Δ+0.00e+00) | cov25全市场=0.9484 池内=1.0000 | sd≤0 日数 全 0/池内 0 | min_sd=28
+trend2       tr2_stoch_k14              panel  | cov12=0.8872 vs csv 0.8872 (Δ+0.00e+00) | cov25全市场=0.9480 池内=1.0000 | sd≤0 日数 全 0/池内 0 | min_sd=22
+trend2       tr2_trix12                 panel  | cov12=0.8833 vs csv 0.8833 (Δ+0.00e+00) | cov25全市场=0.9470 池内=1.0000 | sd≤0 日数 全 0/池内 0 | min_sd=39.3
+trend2       tr2_donch_pos250           panel  | cov12=0.8574 vs csv 0.8574 (Δ+0.00e+00) | cov25全市场=0.9393 池内=1.0000 | sd≤0 日数 全 0/池内 0 | min_sd=0.162
+pattern      pt_upper_shadow1           panel  | cov12=0.8847 vs csv 0.8847 (Δ+0.00e+00) | cov25全市场=0.9437 池内=1.0000 | sd≤0 日数 全 0/池内 0 | min_sd=0.175
+pattern      pt_close_vs_open20         panel  | cov12=0.8842 vs csv 0.8842 (Δ+0.00e+00) | cov25全市场=0.9459 池内=0.9987 | sd≤0 日数 全 0/池内 0 | min_sd=0.103
+pattern      pt_nr7_count20             panel  | cov12=0.8842 vs csv 0.8842 (Δ+0.00e+00) | cov25全市场=0.9459 池内=0.9987 | sd≤0 日数 全 0/池内 0 | min_sd=1.28
+pattern      pt_eod_reversal20          panel  | cov12=0.8842 vs csv 0.8842 (Δ+0.00e+00) | cov25全市场=0.9459 池内=0.9987 | sd≤0 日数 全 0/池内 0 | min_sd=0.0498
+pattern      pt_path_entropy20          panel  | cov12=0.8842 vs csv 0.8842 (Δ+0.00e+00) | cov25全市场=0.9459 池内=0.9987 | sd≤0 日数 全 0/池内 0 | min_sd=0.0393
+calendar     cal_tom_x_amt              panel  | cov12=0.8796 vs csv 0.8796 (Δ+0.00e+00) | cov25全市场=0.9434 池内=0.9999 | sd≤0 日数 全 0/池内 0 | min_sd=0.559
+calendar     cal_quarter_x_rev20        panel  | cov12=0.8858 vs csv 0.8858 (Δ+0.00e+00) | cov25全市场=0.9477 池内=1.0000 | sd≤0 日数 全 0/池内 0 | min_sd=0.0367
+calendar     cal_pre_holiday_x_ret5     panel  | cov12=0.8895 vs csv 0.8895 (Δ+0.00e+00) | cov25全市场=0.9488 池内=1.0000 | sd≤0 日数 全12/池内12 | min_sd=0
+calendar     cal_month_x_mom60          panel  | cov12=0.8876 vs csv 0.8876 (Δ+0.00e+00) | cov25全市场=0.9481 池内=1.0000 | sd≤0 日数 全16/池内16 | min_sd=0
+calendar     cal_post_holiday_x_mom20   panel  | cov12=0.8858 vs csv 0.8858 (Δ+0.00e+00) | cov25全市场=0.9477 池内=1.0000 | sd≤0 日数 全 0/池内 0 | min_sd=0.00521
+interaction  ix_rev_x_lowvol            panel  | cov12=0.8823 vs csv 0.8823 (Δ+0.00e+00) | cov25全市场=0.9466 池内=1.0000 | sd≤0 日数 全 0/池内 0 | min_sd=1.15
+interaction  ix_max_x_illiq             panel  | cov12=0.8816 vs csv 0.8816 (Δ+0.00e+00) | cov25全市场=0.9463 池内=0.9999 | sd≤0 日数 全 0/池内 0 | min_sd=0.868
+interaction  ix_rev_x_size              panel  | cov12=0.8817 vs csv 0.8817 (Δ+0.00e+00) | cov25全市场=0.9463 池内=0.9999 | sd≤0 日数 全 0/池内 0 | min_sd=0.936
+interaction  ix_nearhigh_x_amt          panel  | cov12=0.8568 vs csv 0.8568 (Δ+0.00e+00) | cov25全市场=0.9389 池内=0.9999 | sd≤0 日数 全 0/池内 0 | min_sd=1
+interaction  ix_mom_rank_x_vol_rank     panel  | cov12=0.7725 vs csv 0.7725 (Δ+0.00e+00) | cov25全市场=0.9321 池内=0.9983 | sd≤0 日数 全 0/池内 0 | min_sd=0.247
+marketrel    mk_rel_ret5                panel  | cov12=0.8893 vs csv 0.8893 (Δ+0.00e+00) | cov25全市场=0.9489 池内=1.0000 | sd≤0 日数 全 0/池内 0 | min_sd=0.0568
+marketrel    mk_resid_vol_ratio60       panel  | cov12=0.8825 vs csv 0.8825 (Δ+0.00e+00) | cov25全市场=0.9472 池内=1.0000 | sd≤0 日数 全 0/池内 0 | min_sd=0.0722
+marketrel    mk_rps60                   panel  | cov12=0.8828 vs csv 0.8828 (Δ+0.00e+00) | cov25全市场=0.9472 池内=1.0000 | sd≤0 日数 全 0/池内 0 | min_sd=0.289
+marketrel    mk_info_ratio60            panel  | cov12=0.8828 vs csv 0.8828 (Δ+0.00e+00) | cov25全市场=0.9472 池内=1.0000 | sd≤0 日数 全 0/池内 0 | min_sd=1.39
+marketrel    mk_down_vol_share          panel  | cov12=0.8825 vs csv 0.8825 (Δ+0.00e+00) | cov25全市场=0.9472 池内=1.0000 | sd≤0 日数 全 0/池内 0 | min_sd=0.0987
+
+已注册 45 个因子 cov12 与 20_zoo_check.csv 的 |差|：max=0.000e+00 中位=0.000e+00（float32 面板舍入）
+2025-2026 × 21 日 × 45 因子：全市场标准差 ≤ 0 或 NaN 的 (因子,日期) 格数 = 28
+flow2 5 个因子（直接调用，主线未注册）：cov25 全市场范围 0.9463 ~ 0.9467，sd≤0 格数 = 0
+总耗时 13.5s → v2_t3_coverage.json

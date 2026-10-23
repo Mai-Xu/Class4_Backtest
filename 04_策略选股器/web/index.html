@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>因子组合策略选股器 · Class4 回测</title>
+<link rel="stylesheet" href="/style.css">
+</head>
+<body>
+
+<header class="topbar">
+  <div class="brand">
+    <div class="logo">Fx</div>
+    <div>
+      <h1>因子组合策略选股器</h1>
+      <p>390 个因子 · 非 ST 全市场 · 2025-01-02 → 2026-09-30 样本外实测</p>
+    </div>
+  </div>
+  <div class="chips" id="topChips"></div>
+</header>
+
+<main class="layout">
+
+  <!-- ======================= 左：配置 ======================= -->
+  <aside class="panel config">
+    <div class="scroll">
+
+      <section class="block">
+        <h2><span class="step">1</span>选一种玩法</h2>
+        <div class="modes" id="modePicker">
+          <button class="mode-card" data-mode="score">
+            <div class="mode-head"><b>打分合成</b><span class="tag">推荐</span></div>
+            <p>把几个因子按权重合成一个总分，<b>买分数最高的 N 只股票</b>——一个组合、一份资金。</p>
+          </button>
+          <button class="mode-card" data-mode="allocate">
+            <div class="mode-head"><b>资金分配</b></div>
+            <p>每个因子<b>各自选股成为一个子策略</b>，把资金按权重分给它们，收益按权重相加。</p>
+          </button>
+        </div>
+      </section>
+
+      <section class="block">
+        <h2><span class="step">2</span>挑因子 <span class="hint" id="factorCount"></span></h2>
+
+        <div class="findbar">
+          <input id="search" type="search" placeholder="搜索因子名 / 说明，如 反转、波动、量价…" autocomplete="off">
+        </div>
+        <div class="familyfilter" id="familyFilter"></div>
+        <div class="quick">
+          <button class="mini" id="presetIcir" title="按样本内 |ICIR| 排序、每个家族最多 2 个，取 8 个代表因子并以 |ICIR| 为初始权重">✨ ICIR 精选 8 个</button>
+          <button class="mini" id="presetReps" title="取样本内 |IC|≥0.02、|ICIR|≥0.5 的非冗余簇代表因子">选出全部代表因子</button>
+          <button class="mini" id="clearSel">清空</button>
+        </div>
+
+        <div class="factorlist" id="factorList"></div>
+      </section>
+
+      <section class="block">
+        <h2><span class="step">3</span><span id="weightTitle">调权重</span></h2>
+        <div class="selected" id="selectedList"></div>
+        <div class="quick">
+          <button class="mini" id="wEqual">均分</button>
+          <button class="mini" id="wIcir">按 |ICIR| 加权</button>
+          <button class="mini" id="wInvIcir">按 1/|ICIR| 加权</button>
+          <span class="sumtag" id="weightSum"></span>
+        </div>
+      </section>
+
+      <section class="block">
+        <h2><span class="step">4</span>参数</h2>
+        <div class="field">
+          <label>持仓只数 <b id="nHoldLabel">1700</b> <span class="hint" id="nHoldHint"></span></label>
+          <input id="nHold" type="range" min="100" max="3000" step="50" value="1700">
+          <div class="presets" id="nPresets">
+            <button data-n="200">200</button><button data-n="400">400</button>
+            <button data-n="800">800</button><button data-n="1700" class="on">1700</button>
+            <button data-n="2500">2500</button>
+          </div>
+        </div>
+        <div class="field" id="bufferField">
+          <label>缓冲带 <b id="bufferLabel">1.0×</b> <span class="hint">老持仓跌出前 N×缓冲带 才卖，抑制换手</span></label>
+          <input id="buffer" type="range" min="1" max="2" step="0.1" value="1">
+        </div>
+      </section>
+
+    </div>
+    <div class="runbar">
+      <button class="run" id="run"><span class="run-label">开始回测</span><span class="run-time"></span></button>
+      <div class="runerr" id="runErr"></div>
+    </div>
+  </aside>
+
+  <!-- ======================= 右：结果 ======================= -->
+  <section class="results" id="results">
+    <div class="placeholder" id="placeholder">
+      <div class="ph-art">◧</div>
+      <h3>左边挑好因子，点「开始回测」</h3>
+      <p>程序按你设置的权重，用 10 亿元资金在非 ST 全市场里跑一遍 2025 年 1 月到 2026 年 9 月的月度调仓回测，
+         并把结果和<b>全市场等权</b>、<b>所选因子等权</b>、<b>项目最优打分模型</b>放在同一张图里对比。</p>
+      <button class="mini primary" id="tryDefault">用当前选择试一下 →</button>
+    </div>
+    <div class="hidden" id="resultBody"></div>
+  </section>
+
+</main>
+
+<div class="tooltip" id="tooltip"></div>
+<script src="/app.js"></script>
+</body>
+</html>

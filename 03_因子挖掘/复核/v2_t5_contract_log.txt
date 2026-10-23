@@ -1,0 +1,19 @@
+投毒日期 2023-07-31；第二个契约日期 2026-06-30；模块 10，因子合计 320
+元数据检查：320 个因子，异常 0 个
+契约检查（2 个日期）：形状/异常/inf 违例 0 个因子；横截面标准差为 0 的因子 7 个
+  [常数] calendar       cal_yearend_x_rev20        ['2023-07-31', '2026-06-30']
+  [常数] calendar       cal_pre_holiday_x_ret5     ['2023-07-31', '2026-06-30']
+  [常数] calendar       cal_pre_holiday_x_amt      ['2023-07-31', '2026-06-30']
+  [常数] calendar       cal_weekday_x_rev5         ['2026-06-30']
+  [常数] calendar       cal_weekday_x_illiq        ['2026-06-30']
+  [常数] calendar       cal_month_x_mom60          ['2023-07-31', '2026-06-30']
+  [常数] calendar       cal_month_x_rev60          ['2023-07-31', '2026-06-30']
+  投毒上下文 [copy @ 2023-07-31] 构造完成 0.9s
+  投毒上下文 [nan @ 2023-07-31] 构造完成 0.8s
+  投毒上下文 [rand @ 2023-07-31] 构造完成 2.4s
+
+全量投毒：320 个因子 × 2 种投毒 = 640 次重算，逐位相同 386 次，超出噪声下限的违例 2 次
+  [POISON] trend2         tr2_lin_r2_20              nan  max|Δ|=1.110e-15 噪声下限=1.110e-15 mask错=2
+  [POISON] trend2         tr2_lin_r2_20              rand max|Δ|=1.110e-15 噪声下限=1.110e-15 mask错=2
+非 copy 模式：max|Δ|=8.731e-11，max_rel=1.819e-03（含 1ulp 级浮点噪声）
+总耗时 21.8s → v2_t5_contract.json

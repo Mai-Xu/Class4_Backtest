@@ -1,0 +1,12 @@
+{
+ "n_no_limit_diff": 12,
+ "n_over_diff": 12,
+ "mkt_max_abs_diff": 3.0813210457609e-05,
+ "mkt_mean_abs_diff": 1.5955956809144555e-07,
+ "mkt_days_diff": 12,
+ "n_days": 1643,
+ "ic20_pipeline": -0.06471992902787305,
+ "ic20_pit": -0.06471992902787305,
+ "ic20_diff": 0.0,
+ "seconds": 8.89438247680664
+}

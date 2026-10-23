@@ -1,0 +1,24 @@
+数值抽检日期 = 2023-07-31（t=866）
+reversal     rev_ret10                比较 5029 列 | 双有限 5013 掩码不一致  0 | max|Δ|=0.000e+00 max_rel=0.000e+00 | OK
+reversal     rev_max1d20              比较 5029 列 | 双有限 5010 掩码不一致  0 | max|Δ|=0.000e+00 max_rel=0.000e+00 | OK
+risk2        rk2_park60               比较 5029 列 | 双有限 4973 掩码不一致  0 | max|Δ|=2.082e-17 max_rel=5.882e-16 | OK
+risk2        rk2_var5_60              比较 5029 列 | 双有限 4972 掩码不一致  0 | max|Δ|=1.388e-17 max_rel=2.215e-16 | OK
+liquidity2   lq2_logamt60             比较 5029 列 | 双有限 4964 掩码不一致  0 | max|Δ|=0.000e+00 max_rel=0.000e+00 | OK
+liquidity2   lq2_amihud120            比较 5029 列 | 双有限 4928 掩码不一致  0 | max|Δ|=0.000e+00 max_rel=0.000e+00 | OK
+flow2        fl2_cmf60                比较 5029 列 | 双有限 4963 掩码不一致  0 | max|Δ|=2.220e-16 max_rel=2.673e-13 | OK
+flow2        fl2_vwapdev20            比较 5029 列 | 双有限 5004 掩码不一致  0 | max|Δ|=6.661e-16 max_rel=1.049e-11 | OK
+chip         ch_profit60              比较 5029 列 | 双有限 4964 掩码不一致  0 | max|Δ|=0.000e+00 max_rel=0.000e+00 | OK
+chip         ch_cost_dev120           比较 5029 列 | 双有限 4928 掩码不一致  0 | max|Δ|=1.332e-15 max_rel=9.447e-12 | OK
+trend2       tr2_rsi14b               比较  800 列 | 双有限  798 掩码不一致  0 | max|Δ|=2.842e-14 max_rel=5.725e-16 | OK
+trend2       tr2_di_plus14            比较  800 列 | 双有限  791 掩码不一致  0 | max|Δ|=0.000e+00 max_rel=0.000e+00 | OK
+pattern      pt_body1                 比较 5029 列 | 双有限 5016 掩码不一致  0 | max|Δ|=0.000e+00 max_rel=0.000e+00 | OK
+pattern      pt_up_days20             比较 5029 列 | 双有限 5003 掩码不一致  0 | max|Δ|=0.000e+00 max_rel=0.000e+00 | OK
+calendar     cal_tom_x_rev5           比较 5029 列 | 双有限 5022 掩码不一致  0 | max|Δ|=0.000e+00 max_rel=0.000e+00 | OK
+calendar     cal_seasonal_mom         比较 5029 列 | 双有限 4662 掩码不一致  0 | max|Δ|=0.000e+00 max_rel=0.000e+00 | OK
+interaction  ix_consensus_rev         比较 5029 列 | 双有限 5022 掩码不一致  0 | max|Δ|=0.000e+00 max_rel=0.000e+00 | OK
+interaction  ix_rev_x_illiq           比较 5029 列 | 双有限 4963 掩码不一致  0 | max|Δ|=0.000e+00 max_rel=0.000e+00 | OK
+marketrel    mk_rel_ret20             比较 5029 列 | 双有限 5010 掩码不一致  0 | max|Δ|=0.000e+00 max_rel=0.000e+00 | OK
+marketrel    mk_rel_mom12_1           比较 5029 列 | 双有限 4840 掩码不一致  0 | max|Δ|=0.000e+00 max_rel=0.000e+00 | OK
+
+数值一致（判定 OK）：20/20
+总耗时 4.5s → v2_t2_numeric.json
