@@ -1,0 +1,260 @@
+{
+  "created_at": "2026-10-30T20:08:09.598324",
+  "seed": 20261030,
+  "train": [
+    "2021-01-01",
+    "2022-12-31"
+  ],
+  "validation": [
+    "2023-01-01",
+    "2024-12-31"
+  ],
+  "oos_untouched": true,
+  "n_features": 53,
+  "n_evolved": 135,
+  "n_random": 135,
+  "n_validation_looks": 17,
+  "selection": {
+    "main": {
+      "role": "evolved",
+      "tree": [
+        "add",
+        [
+          "feat",
+          "amtlog60"
+        ],
+        [
+          "feat",
+          "max5d20"
+        ]
+      ],
+      "formula": "(amtlog60 add max5d20)",
+      "train": {
+        "n": 24,
+        "ic": -0.14395800443342638,
+        "ic_std": 0.11027761960690444,
+        "icir": -4.522088502158944,
+        "t": -6.395198890004614,
+        "pos": 0.08333333333333333,
+        "direction": -1.0,
+        "icir_adj": 4.522088502158944,
+        "t_adj": 6.395198890004614,
+        "fold_min_icir_adj": 2.344385134703885,
+        "turnover_top1700": 0.31767263427109976,
+        "nodes": 3,
+        "tree": [
+          "add",
+          [
+            "feat",
+            "amtlog60"
+          ],
+          [
+            "feat",
+            "max5d20"
+          ]
+        ],
+        "formula": "(amtlog60 add max5d20)",
+        "fitness": 3.6176708017271553
+      },
+      "valid": {
+        "n": 24,
+        "ic": -0.11796951991356573,
+        "ic_std": 0.15718629113126215,
+        "icir": -2.5998348935426474,
+        "t": -3.6767217663788236,
+        "pos": 0.16666666666666666,
+        "direction": -1.0,
+        "icir_adj": 2.5998348935426474,
+        "t_adj": 3.6767217663788236,
+        "fold_min_icir_adj": 0.22933749718433794,
+        "turnover_top1700": 0.3789258312020461,
+        "nodes": 3
+      },
+      "combined": 3.476591697642694
+    },
+    "simple": {
+      "role": "evolved",
+      "tree": [
+        "add",
+        [
+          "feat",
+          "amtlog60"
+        ],
+        [
+          "feat",
+          "max5d20"
+        ]
+      ],
+      "formula": "(amtlog60 add max5d20)",
+      "train": {
+        "n": 24,
+        "ic": -0.14395800443342638,
+        "ic_std": 0.11027761960690444,
+        "icir": -4.522088502158944,
+        "t": -6.395198890004614,
+        "pos": 0.08333333333333333,
+        "direction": -1.0,
+        "icir_adj": 4.522088502158944,
+        "t_adj": 6.395198890004614,
+        "fold_min_icir_adj": 2.344385134703885,
+        "turnover_top1700": 0.31767263427109976,
+        "nodes": 3,
+        "tree": [
+          "add",
+          [
+            "feat",
+            "amtlog60"
+          ],
+          [
+            "feat",
+            "max5d20"
+          ]
+        ],
+        "formula": "(amtlog60 add max5d20)",
+        "fitness": 3.6176708017271553
+      },
+      "valid": {
+        "n": 24,
+        "ic": -0.11796951991356573,
+        "ic_std": 0.15718629113126215,
+        "icir": -2.5998348935426474,
+        "t": -3.6767217663788236,
+        "pos": 0.16666666666666666,
+        "direction": -1.0,
+        "icir_adj": 2.5998348935426474,
+        "t_adj": 3.6767217663788236,
+        "fold_min_icir_adj": 0.22933749718433794,
+        "turnover_top1700": 0.3789258312020461,
+        "nodes": 3
+      },
+      "combined": 3.476591697642694
+    },
+    "random_best": {
+      "role": "random",
+      "tree": [
+        "add",
+        [
+          "feat",
+          "amtlog60"
+        ],
+        [
+          "square",
+          [
+            "feat",
+            "distlow60"
+          ]
+        ]
+      ],
+      "formula": "(amtlog60 add square(distlow60))",
+      "train": {
+        "n": 24,
+        "ic": -0.11207490606828108,
+        "ic_std": 0.09841886788544084,
+        "icir": -3.9447605064859417,
+        "t": -5.578733808586178,
+        "pos": 0.125,
+        "direction": -1.0,
+        "icir_adj": 3.9447605064859417,
+        "t_adj": 5.578733808586178,
+        "fold_min_icir_adj": 2.7801715096192647,
+        "turnover_top1700": 0.2548849104859335,
+        "nodes": 4,
+        "tree": [
+          "add",
+          [
+            "feat",
+            "amtlog60"
+          ],
+          [
+            "square",
+            [
+              "feat",
+              "distlow60"
+            ]
+          ]
+        ],
+        "formula": "(amtlog60 add square(distlow60))",
+        "fitness": 3.1558084051887536
+      },
+      "valid": {
+        "n": 24,
+        "ic": -0.09892805380888103,
+        "ic_std": 0.14051779886519317,
+        "icir": -2.438814397530866,
+        "t": -3.449004397098919,
+        "pos": 0.16666666666666666,
+        "direction": -1.0,
+        "icir_adj": 2.438814397530866,
+        "t_adj": 3.449004397098919,
+        "fold_min_icir_adj": -0.12205940055244585,
+        "turnover_top1700": 0.3041943734015345,
+        "nodes": 4
+      },
+      "combined": 3.312762603886726
+    },
+    "rev5_baseline": {
+      "tree": [
+        "neg",
+        [
+          "feat",
+          "ret5"
+        ]
+      ],
+      "formula": "neg(ret5)",
+      "train": {
+        "n": 24,
+        "ic": 0.05742202121967586,
+        "ic_std": 0.10624410360437504,
+        "icir": 1.8722518210729424,
+        "t": 2.64776391753908,
+        "pos": 0.6666666666666666,
+        "direction": 1.0,
+        "icir_adj": 1.8722518210729424,
+        "t_adj": 2.64776391753908,
+        "fold_min_icir_adj": -0.4487959704170072,
+        "turnover_top1700": 0.5652429667519182,
+        "nodes": 2,
+        "tree": [
+          "neg",
+          [
+            "feat",
+            "ret5"
+          ]
+        ],
+        "formula": "neg(ret5)",
+        "fitness": 1.4080422627749525
+      },
+      "valid": {
+        "n": 24,
+        "ic": 0.03692659904543171,
+        "ic_std": 0.12671762645206996,
+        "icir": 1.009468808533974,
+        "t": 1.4276044798213552,
+        "pos": 0.5,
+        "direction": 1.0,
+        "icir_adj": 1.009468808533974,
+        "t_adj": 1.4276044798213552,
+        "fold_min_icir_adj": -1.1537890606477128,
+        "turnover_top1700": 0.643759590792839,
+        "nodes": 2
+      }
+    }
+  },
+  "control": {
+    "signflip_valid_ic": -0.11796951991356573,
+    "signflip_valid_icir": -2.5998348935426474,
+    "rerun_equal": true
+  },
+  "data": {
+    "br_sha256": "a94b0e337f2b329f4a36c796af1af840b0cf63441711d78cee8df27593120bff",
+    "br_bytes": 79737356,
+    "y_sha256": "025466396a690c7e9cbd2302f5daf0d56bed2a14512e52167221ff7489787ba4",
+    "universe_sha256": "83eac5cc13374305202345bb7ef22f0efa2474d1ca5ce37579c304307f269845"
+  },
+  "limits": [
+    "primitive bank is fixed; the GP evolves combinations, not new rolling operators",
+    "feature/z-score preprocessing is causal but uses hand-designed windows",
+    "validation shortlist is one look; GP itself used 40+ candidates per generation",
+    "OOS 21 months cannot support precise annualized claims"
+  ]
+}
