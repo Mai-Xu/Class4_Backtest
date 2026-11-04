@@ -51,6 +51,8 @@ Class4_回测/
 │   ├── s24_report.py           报告 + 自包含看板
 │   ├── s25_robustness.py       参数 / 成本 / 家族留一 / 随机对照
 │   ├── s26_ml_score.py         机器学习打分对照（树模型，严格样本外）
+│   ├── evo/                    组合层自进化 V1/V2/V3（同预算随机对照、审计）
+│   ├── evo_formula/            公式树级进化 V1/V2（walk-forward、因果/反事实）
 │   └── 复核/                   独立复核（回测记账 + 因子因果性两套）
 │
 ├── 04_策略选股器/            ★ 交互式 WebUI：挑因子 → 调权重 → 10 亿资金实测（两种玩法）
@@ -70,6 +72,8 @@ Class4_回测/
     ├── 01_数据核验/           data_audit.md / external_check.md / figures / tables
     ├── 02_回测系统/           backtest_report.md / vol_report.md / 看板 / figures / tables / runs
     ├── 03_因子挖掘/           mining_report.md / dashboard.html / tables / runs
+    │   ├── evo/               组合层 V1/V2/V3 报告与台账
+    │   └── evo_formula/       公式级 V1/V2 报告、图表与冻结文件
     ├── 04_策略选股器/         figures/（WebUI 截图）/ tables/（引擎对拍结果）
     ├── cache/                因子面板缓存 / selector 选股器物化数据（可再生、不入库）
     └── README.md             产物索引
