@@ -110,3 +110,28 @@ python 03_因子挖掘/evo_formula/run_formula_oos.py
 - `out/03_因子挖掘/evo_formula/oos_formula_nav.csv`
 
 > 课程作业与研究方法练习，不构成投资建议。
+
+## 8. V2 补完：Walk-Forward、因果投毒、反事实与成本审计
+
+V1 的结论是“验证段有效、OOS 方向翻转”。V2 不再把 2025–2026 当第二次盲测，而是把比较全部退回开发区间：
+
+- 5 个滚动 train/holdout 窗口，落在 2021–2023；
+- 2024H2 只做一次 outer confirmation；
+- 5 个随机种子，每种子 59 个进化公式 + 59 个同预算随机公式；
+- fitness 加入 direction consistency、min-fold ICIR、节点数和换手成本惩罚；
+- 每个生成公式做 `Ctx.truncated` 因果投毒；
+- 对冻结公式做 leaf-only 反事实拆解与池增量计算；
+- 把失败原因写回 `policy_memory.json`，供下一轮搜索读取。
+
+### V2 结果
+
+- 随机对照在冻结 outer ICIR 上 **4 胜 1 平**，进化臂没有赢；
+- 冻结公式：`(abs(ovn20) mul (distlow60 div intra20))`
+- inner mean holdout ICIR：4.14；outer 2024H2 ICIR：2.34；
+- 因果截断检查：`max_abs_diff=0.0`，通过；
+- 反事实发现：单独 `intra20` 的 outer ICIR 为 6.12，完整公式反而只有 2.34；
+- 成本审计：2025–2026 已看过，仅作诊断；30bp 单边滑点下年化约 16.7%、夏普约 0.80，年化换手约 16.5x。
+
+V2 说明：**我们完成了一个可审计的公式搜索闭环，但没有证明 GP 优于同预算随机搜索。** 下一轮如果继续，应该从 `intra20` 这类单叶公式重新做假设，而不是把组合层继续堆复杂。
+
+详细结果见 `out/03_因子挖掘/evo_formula/v2/report.md`。

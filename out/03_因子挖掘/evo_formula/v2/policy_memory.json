@@ -1,0 +1,37 @@
+{
+  "version": "formula_policy_memory_v2",
+  "source": "walkforward_trials.csv",
+  "top_quartile_threshold": 1.7691406912820382,
+  "operator_stats": [
+    {
+      "op": "mutation",
+      "n": 170,
+      "fitness_mean": 1.3194574074241363,
+      "fitness_median": 1.5350537638533035,
+      "top_quartile_rate": 0.3352941176470588,
+      "recommended_weight": 0.9999930437988864
+    },
+    {
+      "op": "seed",
+      "n": 120,
+      "fitness_mean": 1.175702781691561,
+      "fitness_median": 1.3370871852170472,
+      "top_quartile_rate": 0.13333333333333333,
+      "recommended_weight": 6.9562011135421355e-06
+    }
+  ],
+  "failure_counts": {
+    "accepted": 187,
+    "complexity": 70,
+    "negative_holdout": 22,
+    "unstable_folds": 8,
+    "direction_flip": 3
+  },
+  "next_round_directives": [
+    "prefer operators with positive top-quartile_rate, but keep >=25% exploration",
+    "penalise formulas with >5 nodes and holdout turnover >0.65",
+    "require direction consistency >=0.80 across rolling folds",
+    "run matched random arm with exactly the same candidate budget",
+    "never use 2025-2026 as a new blind OOS; wait for a genuinely future window"
+  ]
+}

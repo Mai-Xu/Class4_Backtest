@@ -1,0 +1,64 @@
+{
+  "version": "v3",
+  "created_at": "2026-10-30T20:18:18.913216",
+  "inner_train": [
+    "2021-01-01",
+    "2022-06-30"
+  ],
+  "inner_holdout": [
+    "2022-07-01",
+    "2022-12-31"
+  ],
+  "outer_validation": [
+    "2023-01-01",
+    "2024-12-31"
+  ],
+  "oos_untouched": true,
+  "seed": 20261030,
+  "candidate": {
+    "genome": {
+      "rk2_ret_skew120": 1.5,
+      "pt_range_trend": 1.0,
+      "rk2_maxret_60": 1.0,
+      "fl2_smart60": 2.0,
+      "ix_illiq_x_lowvol": 1.0,
+      "lq2_amihud20b": 1.0,
+      "rk2_beta_up60": 0.5
+    },
+    "inner_train": {
+      "n": 18,
+      "ic": 0.13094579190365316,
+      "ic_std": 0.10366865575141106,
+      "icir": 4.375570667344773,
+      "t": 5.358957734241983,
+      "pos": 0.9444444444444444,
+      "fold_min_icir": 2.7787915805702132,
+      "turnover_top1700": 0.26183391003460205,
+      "n_active": 7,
+      "genome": {
+        "rk2_ret_skew120": 1.5,
+        "pt_range_trend": 1.0,
+        "rk2_maxret_60": 1.0,
+        "fl2_smart60": 2.0,
+        "ix_illiq_x_lowvol": 1.0,
+        "lq2_amihud20b": 1.0,
+        "rk2_beta_up60": 0.5
+      },
+      "generation": 1,
+      "fitness": 4.31510967198868
+    },
+    "outer_validation": {
+      "n": 24,
+      "ic": 0.08686286292031835,
+      "ic_std": 0.11700277249066258,
+      "icir": 2.5717491759588658,
+      "t": 3.6370025636628593,
+      "pos": 0.7916666666666666,
+      "fold_min_icir": 0.9120146057595653,
+      "turnover_top1700": 0.29895140664961634,
+      "n_active": 7
+    },
+    "combined": 3.3841727271600335
+  },
+  "note": "V3 is a protocol for future data; 2025-2026 was already consumed by V1 and is not used here."
+}

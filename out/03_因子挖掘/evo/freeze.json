@@ -1,0 +1,238 @@
+{
+  "created_at": "2026-10-30T19:55:32.930371",
+  "seed": 20261030,
+  "train": [
+    "2021-01-01",
+    "2022-12-31"
+  ],
+  "validation": [
+    "2023-01-01",
+    "2024-12-31"
+  ],
+  "oos_untouched": true,
+  "n_factors": 239,
+  "n_pool": 197,
+  "n_evolved_evaluations": 59,
+  "n_random_evaluations": 59,
+  "n_validation_looks": 18,
+  "selection": {
+    "main": {
+      "role": "evolved",
+      "genome": {
+        "lq_amt_log20": 4.728477062122748,
+        "fl2_smart20": 4.518496452153319,
+        "ix_pvdiv_x_turn": 3.52808434454667,
+        "fl2_smart60": 3.1567764184923996,
+        "rev_max1d20": 2.9270746150313647,
+        "rev_max5d20": 2.8898697902327037,
+        "rk_udvol60": 2.8664619041761976,
+        "tr2_ema_dev60": 0.5
+      },
+      "train": {
+        "n": 24,
+        "ic": 0.15417448896759547,
+        "ic_std": 0.10977276908877437,
+        "icir": 4.865287636260433,
+        "t": 6.880555760045642,
+        "pos": 0.9166666666666666,
+        "fold_min_icir": 2.7710542485452967,
+        "turnover_top1700": 0.34759590792838874,
+        "n_active": 8,
+        "generation": 1,
+        "genome": {
+          "lq_amt_log20": 4.728477062122748,
+          "fl2_smart20": 4.518496452153319,
+          "ix_pvdiv_x_turn": 3.52808434454667,
+          "fl2_smart60": 3.1567764184923996,
+          "rev_max1d20": 2.9270746150313647,
+          "rev_max5d20": 2.8898697902327037,
+          "rk_udvol60": 2.8664619041761976,
+          "tr2_ema_dev60": 0.5
+        },
+        "fitness": 4.135494490821368
+      },
+      "valid": {
+        "n": 24,
+        "ic": 0.09596805908936634,
+        "ic_std": 0.12886469529268238,
+        "icir": 2.57978422824073,
+        "t": 3.648365843574248,
+        "pos": 0.8333333333333334,
+        "fold_min_icir": 0.5647238381822293,
+        "turnover_top1700": 0.3929667519181586,
+        "n_active": 8
+      },
+      "combined": 3.3377990101138177
+    },
+    "simple": {
+      "role": "evolved",
+      "genome": {
+        "lq_amt_log20": 4.728477062122748,
+        "fl2_smart20": 4.518496452153319,
+        "ix_pvdiv_x_turn": 3.52808434454667,
+        "fl2_smart60": 3.1567764184923996,
+        "rev_max1d20": 2.9270746150313647,
+        "rev_max5d20": 2.8898697902327037,
+        "rk_udvol60": 2.8664619041761976,
+        "tr2_ema_dev60": 0.5
+      },
+      "train": {
+        "n": 24,
+        "ic": 0.15417448896759547,
+        "ic_std": 0.10977276908877437,
+        "icir": 4.865287636260433,
+        "t": 6.880555760045642,
+        "pos": 0.9166666666666666,
+        "fold_min_icir": 2.7710542485452967,
+        "turnover_top1700": 0.34759590792838874,
+        "n_active": 8,
+        "generation": 1,
+        "genome": {
+          "lq_amt_log20": 4.728477062122748,
+          "fl2_smart20": 4.518496452153319,
+          "ix_pvdiv_x_turn": 3.52808434454667,
+          "fl2_smart60": 3.1567764184923996,
+          "rev_max1d20": 2.9270746150313647,
+          "rev_max5d20": 2.8898697902327037,
+          "rk_udvol60": 2.8664619041761976,
+          "tr2_ema_dev60": 0.5
+        },
+        "fitness": 4.135494490821368
+      },
+      "valid": {
+        "n": 24,
+        "ic": 0.09596805908936634,
+        "ic_std": 0.12886469529268238,
+        "icir": 2.57978422824073,
+        "t": 3.648365843574248,
+        "pos": 0.8333333333333334,
+        "fold_min_icir": 0.5647238381822293,
+        "turnover_top1700": 0.3929667519181586,
+        "n_active": 8
+      },
+      "combined": 3.3377990101138177
+    },
+    "train_icir8_baseline": {
+      "genome": {
+        "lq_amt_log20": 4.728477062122748,
+        "fl2_smart20": 4.518496452153319,
+        "lq2_tradesize_trend": 3.6345520195685244,
+        "ix_pvdiv_x_turn": 3.52808434454667,
+        "fl2_smart60": 3.1567764184923996,
+        "rev_max1d20": 2.9270746150313647,
+        "rev_max5d20": 2.8898697902327037,
+        "rk_udvol60": 2.8664619041761976
+      },
+      "train": {
+        "genome": {
+          "lq_amt_log20": 4.728477062122748,
+          "fl2_smart20": 4.518496452153319,
+          "lq2_tradesize_trend": 3.6345520195685244,
+          "ix_pvdiv_x_turn": 3.52808434454667,
+          "fl2_smart60": 3.1567764184923996,
+          "rev_max1d20": 2.9270746150313647,
+          "rev_max5d20": 2.8898697902327037,
+          "rk_udvol60": 2.8664619041761976
+        },
+        "generation": -2,
+        "fitness": 4.161072705661947,
+        "n": 24,
+        "ic": 0.14954559830407027,
+        "ic_std": 0.10582246633889132,
+        "icir": 4.895379653719939,
+        "t": 6.923112299256043,
+        "pos": 0.9166666666666666,
+        "fold_min_icir": 2.7146150721511044,
+        "turnover_top1700": 0.3453196930946292,
+        "n_active": 8
+      },
+      "valid": {
+        "n": 24,
+        "ic": 0.08452798972235404,
+        "ic_std": 0.1230681632983588,
+        "icir": 2.3792793999181994,
+        "t": 3.3648091960392366,
+        "pos": 0.7916666666666666,
+        "fold_min_icir": 0.30535640752713866,
+        "turnover_top1700": 0.39199488491048584,
+        "n_active": 8
+      }
+    },
+    "random_best": {
+      "role": "random",
+      "genome": {
+        "ch_support_dist60": 0.5,
+        "fl2_cmf60": 2.0,
+        "mr_mom_acc": 0.25,
+        "rk2_ivol250": 0.25,
+        "ix_skew_x_vol": 0.5,
+        "rk2_ret_kurt120": 0.5,
+        "rev_max1d20": 1.5,
+        "lq_trade_size20": 3.0,
+        "ix_pvcorr_x_rev": 3.0,
+        "pt_open_strength20": 3.0,
+        "pt_gap_fill_rate20": 1.0,
+        "lq_trade_size_skew60": 0.5,
+        "cal_post_holiday_x_lowvol20": 0.5
+      },
+      "train": {
+        "n": 24,
+        "ic": 0.13906003282838927,
+        "ic_std": 0.11292431226180837,
+        "icir": 4.2658491751988485,
+        "t": 6.032821758604293,
+        "pos": 0.875,
+        "fold_min_icir": 2.1529040212869783,
+        "turnover_top1700": 0.3958312020460358,
+        "n_active": 13,
+        "generation": -1,
+        "genome": {
+          "ch_support_dist60": 0.5,
+          "fl2_cmf60": 2.0,
+          "mr_mom_acc": 0.25,
+          "rk2_ivol250": 0.25,
+          "ix_skew_x_vol": 0.5,
+          "rk2_ret_kurt120": 0.5,
+          "rev_max1d20": 1.5,
+          "lq_trade_size20": 3.0,
+          "ix_pvcorr_x_rev": 3.0,
+          "pt_open_strength20": 3.0,
+          "pt_gap_fill_rate20": 1.0,
+          "lq_trade_size_skew60": 0.5,
+          "cal_post_holiday_x_lowvol20": 0.5
+        },
+        "fitness": 3.425971798919021
+      },
+      "valid": {
+        "n": 24,
+        "ic": 0.10475837749950634,
+        "ic_std": 0.1373097970158816,
+        "icir": 2.6428825370215736,
+        "t": 3.737600327614923,
+        "pos": 0.7916666666666666,
+        "fold_min_icir": 0.821254440403325,
+        "turnover_top1700": 0.44508951406649616,
+        "n_active": 13
+      },
+      "combined": 3.235609433004113
+    }
+  },
+  "control": {
+    "sign_flip_valid_ic": -0.09596805908936634,
+    "sign_flip_valid_icir": -2.57978422824073,
+    "rerun_equal": true
+  },
+  "data": {
+    "z_sha256": "6f65d4eb34ac59458a3af629b1c2ad9a7aab5b247ec6c785c1e0fd5b42600b0d",
+    "z_bytes": 359569892,
+    "y_sha256": "025466396a690c7e9cbd2302f5daf0d56bed2a14512e52167221ff7489787ba4",
+    "universe_sha256": "83eac5cc13374305202345bb7ef22f0efa2474d1ca5ce37579c304307f269845"
+  },
+  "known_limits": [
+    "factor panels are precomputed with the course factor library; evolving only subset/weights, not formulas",
+    "validation was looked at once for a shortlist of 18 candidate combinations",
+    "2025-2026 OOS is only 21 months and cannot support precise annualized claims",
+    "fastsim backtest is a vectorized proxy; the course engine is the execution-grade check",
+    "family cap and complexity/turnover penalties are researcher choices"
+  ]
+}

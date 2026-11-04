@@ -1,0 +1,291 @@
+﻿seed,formula,reason
+20261030,square(rank(((ret60 add z(z(ret120))) add upvol60))),complexity
+20261030,abs(square(((ret60 add z(z(ret120))) add upvol60))),complexity
+20261030,(max1d20 mul ((tradesize20 div max1d60) div (vol20 div magap20_60))),complexity
+20261030,abs(range1),accepted
+20261030,square(abs(range1)),accepted
+20261030,z(z(square(abs(range1)))),accepted
+20261030,(abs(range1) add (distlow20 sub distlow20)),complexity
+20261030,max1d20,accepted
+20261030,neg(max1d20),accepted
+20261030,square(max5d20),accepted
+20261030,square(neg(max5d20)),accepted
+20261030,square(z(max5d20)),accepted
+20261030,(max1d20 div z((distlow60 mul nlog60))),complexity
+20261030,max5d20,accepted
+20261030,neg(max5d20),accepted
+20261030,rank(neg(max5d20)),accepted
+20261030,z(neg(neg(max5d20))),accepted
+20261030,(rank(vol20) mul ((range20 add amtrel5) div rank(distlow20))),complexity
+20261030,amtrel20,accepted
+20261030,z(amtrel20),accepted
+20261030,rank(amtrel20),accepted
+20261030,vol20,accepted
+20261030,rank(vol20),accepted
+20261030,udvol60,accepted
+20261030,neg(udvol60),accepted
+20261030,rank(neg(udvol60)),accepted
+20261030,(neg(max1d20) sub ((ret250 div amtlog60) div square(intra20))),complexity
+20261030,pvcorr20,accepted
+20261030,((ret60 add z(z(ret120))) add upvol60),complexity
+20261030,(udvol60 sub ret60),accepted
+20261030,rank(((ret60 add z(z(ret120))) add upvol60)),complexity
+20261030,(neg(max1d20) mul neg((amtrel20 sub tradesize20))),complexity
+20261030,illiq20,accepted
+20261030,neg(illiq20),accepted
+20261030,ovn20,accepted
+20261030,square((abs(range1) mul abs(amtrel20))),complexity
+20261030,(amtrel20 add ((closeloc20 add skew20) sub (nlog20 div ovn5))),complexity
+20261030,magap20_60,accepted
+20261030,pos20,accepted
+20261030,madev60,accepted
+20261030,(neg(ret5) add closeloc20),accepted
+20261030,(rank(vol20) mul (abs(nlog20) add neg(illiq20))),complexity
+20261030,ret5,accepted
+20261030,neg(ret5),accepted
+20261030,z(ret5),accepted
+20261030,abs(max1d20),accepted
+20261030,(neg(ret5) mul (square(ret20) sub (pos60 mul amtlog20))),complexity
+20261030,rank((abs(range1) add ret250)),accepted
+20261030,ret120,accepted
+20261030,ret20,accepted
+20261030,neg(ret20),accepted
+20261030,(max1d20 div ((disthigh20 mul upvol60) add rank(vol120))),complexity
+20261030,(neg(max5d20) mul ovn20),direction_flip
+20261030,(neg(max5d20) div autocorr20),unstable_folds
+20261030,rank(neg((ret5 sub (distlow60 mul magap20_60)))),unstable_folds
+20261030,square(udvol60),negative_holdout
+20261030,z((neg(max1d20) div closeloc20)),negative_holdout
+20261030,(abs(range1) add (neg(amtrel20) mul rank(disthigh20))),negative_holdout
+20261030,disthigh20,negative_holdout
+20261031,(disthigh60 sub (z(amtrel5) add (tradesize20 sub ovn5))),complexity
+20261031,rank((disthigh60 sub (z(amtrel5) add (tradesize20 sub ovn5)))),complexity
+20261031,z((disthigh60 sub (z(amtrel5) add (tradesize20 sub ovn5)))),complexity
+20261031,(neg(max1d20) sub square((upvol20 mul pvcorr60))),complexity
+20261031,(upvol20 div (max5d20 mul max5d60)),accepted
+20261031,neg((upvol20 div (max5d20 mul max5d60))),complexity
+20261031,(max1d20 add (ret120 div tradesize20)),accepted
+20261031,max1d20,accepted
+20261031,neg(max1d20),accepted
+20261031,neg(abs(max5d20)),accepted
+20261031,rank(neg(abs(max5d20))),accepted
+20261031,square(max5d20),accepted
+20261031,square(neg(max5d20)),accepted
+20261031,(amtrel60 add nlog20),accepted
+20261031,max5d20,accepted
+20261031,neg(max5d20),accepted
+20261031,amtrel20,accepted
+20261031,(ovn20 sub range1),accepted
+20261031,max1d60,accepted
+20261031,((upvol20 div (max5d20 mul max5d60)) sub abs(abs(pvcorr60))),complexity
+20261031,vol20,accepted
+20261031,rank(vol20),accepted
+20261031,z(vol20),accepted
+20261031,udvol60,accepted
+20261031,neg(udvol60),accepted
+20261031,rank(udvol60),accepted
+20261031,pvcorr20,accepted
+20261031,amtrel60,accepted
+20261031,illiq20,accepted
+20261031,neg(illiq20),accepted
+20261031,(pvcorr20 div (z(ret5) sub tradesize20)),complexity
+20261031,ovn20,accepted
+20261031,pos20,accepted
+20261031,madev60,accepted
+20261031,abs(pvcorr20),accepted
+20261031,(pvcorr20 div skew60),accepted
+20261031,ret5,accepted
+20261031,neg(ret5),accepted
+20261031,abs(neg(max1d20)),accepted
+20261031,(((udvol60 mul udvol60) sub rank(ret60)) div pvcorr60),complexity
+20261031,square((pvcorr20 sub (range20 mul abs(max5d60)))),complexity
+20261031,ret20,accepted
+20261031,neg(ret20),accepted
+20261031,(udvol60 mul magap20_60),accepted
+20261031,(udvol60 div ((closeloc20 mul ret60) add (amtrel20 div upvol20))),unstable_folds
+20261031,((max5d20 add amtlog60) div neg(nlog20)),complexity
+20261031,abs(vol20),accepted
+20261031,(max5d20 div ((disthigh60 add downvol20) add intra20)),direction_flip
+20261031,(max1d20 div (rank(ovn20) mul (range20 add autocorr20))),unstable_folds
+20261031,abs(amtrel20),negative_holdout
+20261031,(ret120 sub magap20_60),negative_holdout
+20261031,(rank(udvol60) add (upvol20 div (pos20 div max1d60))),negative_holdout
+20261031,square((disthigh60 sub (z(amtrel5) add (tradesize20 sub ovn5)))),negative_holdout
+20261031,(neg(abs(max5d20)) mul (ret10 mul autocorr20)),negative_holdout
+20261031,abs((disthigh60 sub (z(amtrel5) add (tradesize20 sub ovn5)))),negative_holdout
+20261032,rank((max1d20 div ((ret60 mul intra5) sub range5))),complexity
+20261032,square(ovn5),accepted
+20261032,square(abs(square(ovn5))),accepted
+20261032,abs(square(ovn5)),accepted
+20261032,z(abs(square(ovn5))),accepted
+20261032,abs(abs(square(ovn5))),accepted
+20261032,neg(square(ovn5)),accepted
+20261032,square(square(square(ovn5))),accepted
+20261032,(max1d20 div square((ret120 div max1d60))),complexity
+20261032,max1d20,accepted
+20261032,neg(max1d20),accepted
+20261032,neg(neg(max1d20)),accepted
+20261032,z(neg(neg(max1d20))),accepted
+20261032,(neg(vol20) mul ret5),accepted
+20261032,square(neg(max5d20)),accepted
+20261032,neg(square(neg(max5d20))),accepted
+20261032,(neg(neg(max1d20)) sub ((skew60 mul pvcorr60) add range1)),complexity
+20261032,max5d20,accepted
+20261032,neg(max5d20),accepted
+20261032,rank(neg(max5d20)),accepted
+20261032,(abs(pvcorr20) div (madev20 add vol5)),complexity
+20261032,amtrel20,accepted
+20261032,neg((udvol60 sub intra5)),accepted
+20261032,abs((square(neg(max5d20)) mul amtlog60)),complexity
+20261032,vol20,accepted
+20261032,z(vol20),accepted
+20261032,abs((neg(max5d20) sub amtlog20)),accepted
+20261032,udvol60,accepted
+20261032,neg(udvol60),accepted
+20261032,z(udvol60),accepted
+20261032,(rank(max5d20) sub disthigh20),accepted
+20261032,rank((rank(max5d20) sub disthigh20)),accepted
+20261032,pvcorr20,accepted
+20261032,(square(intra20) sub (distlow60 sub max5d60)),complexity
+20261032,illiq20,accepted
+20261032,neg(illiq20),accepted
+20261032,range1,accepted
+20261032,(max1d20 sub (square(ovn20) sub (downvol60 div magap20_60))),complexity
+20261032,(pvcorr20 div nlog60),accepted
+20261032,ovn20,accepted
+20261032,(neg(udvol60) div z(abs(pos60))),complexity
+20261032,pos20,accepted
+20261032,madev60,accepted
+20261032,(vol20 mul ((amtrel5 mul ret10) mul (downvol60 div vol5))),complexity
+20261032,abs((pvcorr20 sub udvol60)),accepted
+20261032,ret5,accepted
+20261032,neg(ret5),accepted
+20261032,square(neg(max1d20)),accepted
+20261032,abs(neg(max1d20)),accepted
+20261032,(pvcorr20 div distlow60),accepted
+20261032,neg((range20 sub (ret120 sub magap20_60))),complexity
+20261032,ret20,accepted
+20261032,neg(ret20),accepted
+20261032,(square(ovn5) add (ret10 sub (range20 add vol20))),unstable_folds
+20261032,square(udvol60),negative_holdout
+20261032,square(square(amtrel20)),negative_holdout
+20261032,(neg((range20 sub (ret120 sub magap20_60))) add pvcorr60),negative_holdout
+20261032,(neg(illiq20) div ((pos60 div udvol60) mul z(distlow20))),unstable_folds
+20261032,disthigh60,negative_holdout
+20261033,(neg(illiq20) add max1d20),accepted
+20261033,(vol20 add amtlog20),accepted
+20261033,(vol20 mul ((ret120 add amtrel60) add (pvcorr20 mul amtrel60))),complexity
+20261033,(max1d20 mul ((vol20 add ovn5) add (vol5 div distlow60))),complexity
+20261033,abs(neg((neg(max1d20) sub abs(z(range1))))),complexity
+20261033,neg((neg(max1d20) sub abs(z(range1)))),complexity
+20261033,z(neg((neg(max1d20) sub abs(z(range1))))),complexity
+20261033,max1d20,accepted
+20261033,neg(max1d20),accepted
+20261033,neg(neg(neg(max1d20))),accepted
+20261033,abs(abs(neg(max5d20))),accepted
+20261033,(neg((neg(max1d20) sub abs(z(range1)))) add upvol20),complexity
+20261033,(abs(max5d60) div (neg(vol20) add neg(square(ret10)))),complexity
+20261033,(max5d20 add ((ret120 div pos60) add abs(ret120))),complexity
+20261033,(madev60 mul z(ret20)),accepted
+20261033,max5d20,accepted
+20261033,neg(max5d20),accepted
+20261033,amtrel20,accepted
+20261033,z(amtrel20),accepted
+20261033,neg(amtrel20),accepted
+20261033,rank(rank(amtrel20)),accepted
+20261033,z(neg((madev60 mul z(ret20)))),complexity
+20261033,vol20,accepted
+20261033,udvol60,accepted
+20261033,neg(udvol60),accepted
+20261033,rank(udvol60),accepted
+20261033,pvcorr20,accepted
+20261033,z(pvcorr20),accepted
+20261033,z(((vol20 add amtlog20) div distlow60)),complexity
+20261033,(neg(max1d20) div (amtlog20 add (skew60 div illiq20))),complexity
+20261033,illiq20,accepted
+20261033,neg(illiq20),accepted
+20261033,square((pvcorr20 add ((madev60 div illiq60) mul upvol60))),complexity
+20261033,(neg(udvol60) add abs(max1d60)),accepted
+20261033,ovn20,accepted
+20261033,rank(rank(ovn20)),accepted
+20261033,neg(rank(rank(rank(ovn20)))),accepted
+20261033,((vol20 add amtlog20) mul z(z(max1d60))),complexity
+20261033,pos20,accepted
+20261033,madev60,accepted
+20261033,z(closeloc20),accepted
+20261033,ret5,accepted
+20261033,neg(ret5),accepted
+20261033,square(max1d20),accepted
+20261033,z((neg(max1d20) add ((ret60 add max5d20) div disthigh20))),complexity
+20261033,abs((skew60 sub (z(skew20) add (illiq20 sub upvol20)))),complexity
+20261033,ret20,accepted
+20261033,neg(ret20),accepted
+20261033,(square(vol20) sub (neg(z(autocorr60)) add madev20)),complexity
+20261033,(((pos20 div max1d60) sub amtlog20) div disthigh20),complexity
+20261033,square(vol20),accepted
+20261033,((ret5 div magap20_60) mul (range5 mul disthigh60)),complexity
+20261033,square(neg(illiq20)),negative_holdout
+20261033,abs((pvcorr20 div ((pvcorr20 mul pvcorr60) sub autocorr20))),unstable_folds
+20261033,ret1,negative_holdout
+20261033,(vol20 div (max1d60 add pos20)),negative_holdout
+20261033,((nlog60 sub amtrel60) mul (pvcorr20 sub amtrel60)),negative_holdout
+20261033,((vol20 add amtlog20) mul range5),negative_holdout
+20261034,((upvol60 div madev60) add amtlog20),accepted
+20261034,neg(square(z(abs(((range20 add ret120) mul ret20))))),complexity
+20261034,(abs(ovn20) mul (distlow60 div intra20)),complexity
+20261034,abs(((range20 add ret120) mul ret20)),complexity
+20261034,square(abs(((range20 add ret120) mul ret20))),complexity
+20261034,z(abs(((range20 add ret120) mul ret20))),complexity
+20261034,abs(abs(((range20 add ret120) mul ret20))),complexity
+20261034,rank(square(abs(((range20 add ret120) mul ret20)))),complexity
+20261034,abs(abs(abs(((range20 add ret120) mul ret20)))),complexity
+20261034,abs((abs(ovn20) add z(abs(madev20)))),complexity
+20261034,abs(ovn20),accepted
+20261034,(neg(max5d20) sub skew20),accepted
+20261034,(neg(max5d20) sub autocorr60),accepted
+20261034,max1d20,accepted
+20261034,neg(max1d20),accepted
+20261034,z(neg(max1d20)),accepted
+20261034,neg(abs(max5d20)),accepted
+20261034,(neg(max5d20) mul (rank(tradesize20) mul rank(magap20_60))),complexity
+20261034,max5d20,accepted
+20261034,neg(max5d20),accepted
+20261034,neg(neg(max5d20)),accepted
+20261034,rank(neg(max5d20)),accepted
+20261034,rank(z(neg(max5d20))),accepted
+20261034,amtrel20,accepted
+20261034,rank(amtrel20),accepted
+20261034,(amtrel20 mul abs(square(ovn20))),accepted
+20261034,rank(amtrel5),accepted
+20261034,rank(rank(amtrel5)),accepted
+20261034,vol20,accepted
+20261034,(amtrel20 add (disthigh60 div (max5d60 mul max5d20))),complexity
+20261034,udvol60,accepted
+20261034,neg(udvol60),accepted
+20261034,rank(abs((amtrel20 mul abs(square(ovn20))))),complexity
+20261034,pvcorr20,accepted
+20261034,abs(rank(amtrel5)),accepted
+20261034,illiq20,accepted
+20261034,neg(illiq20),accepted
+20261034,(amtrel20 sub disthigh20),accepted
+20261034,ovn20,accepted
+20261034,range5,accepted
+20261034,abs(((illiq20 div vol60) sub rank(downvol20))),complexity
+20261034,neg(abs(((illiq20 div vol60) sub rank(downvol20)))),complexity
+20261034,pos20,accepted
+20261034,(neg(udvol60) div pos20),accepted
+20261034,madev60,accepted
+20261034,(illiq20 sub neg((ret10 sub ret20))),complexity
+20261034,ret5,accepted
+20261034,neg(ret5),accepted
+20261034,square(max1d20),accepted
+20261034,square(square(neg(max1d20))),accepted
+20261034,(neg(max5d20) add (vol5 mul z(ret60))),complexity
+20261034,(z(abs(((range20 add ret120) mul ret20))) sub amtrel5),complexity
+20261034,ret20,accepted
+20261034,neg(ret20),accepted
+20261034,(ret120 sub ((illiq60 mul downvol60) mul rank(illiq20))),direction_flip
+20261034,rank((max5d20 sub (z(pos60) mul (nlog60 add amtrel60)))),unstable_folds
+20261034,(amtrel20 sub (vol120 sub abs(nlog20))),negative_holdout
+20261034,abs(amtrel20),negative_holdout
+20261034,disthigh60,negative_holdout
